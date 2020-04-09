@@ -1,0 +1,21 @@
+ID,skill,tag,include,extraID,extra
+1,R (advanced),software,Y,,
+2,Python (fundamental awareness),software,Y,,
+3,ArcGIS (novice),software,Y,,
+4,Microsoft Suite (advanced),software,Y,,
+5,LaTEX (novice),software,Y,,
+6,Surveying ,field,Y,a,Total station
+6,Surveying ,field,Y,b,Real time kinematic
+7,Electrical Resistivity Tomography,field,Y,a,Deployment
+7,Electrical Resistivity Tomography,field,Y,b,Data processing and analysis
+8,Environmental Data Loggers,field,Y,a,Onset HOBO
+8,Environmental Data Loggers,field,Y,b,In-Situ Rugged Troll
+8,Environmental Data Loggers,field,Y,c,Driptych Stalagmate
+9,Soil profile and soil sampling protocol,field,Y,,
+10,Water sampling,field,Y,a,Isotopes
+10,Water sampling,field,Y,b,Nutrients
+11,Statistics,stats,Y,a,Time series analysis
+11,Statistics,stats,Y,b,Hypothesis testing
+11,Statistics,stats,Y,c,Social network analysis
+11,Statistics,stats,Y,d,Linear models
+11,Statistics,stats,Y,e,Generalised linear models

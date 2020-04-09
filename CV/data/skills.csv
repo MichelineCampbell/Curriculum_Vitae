@@ -1,0 +1,12 @@
+ID,skill,tag,include
+1,R (advanced),software,Y
+2,Python (fundamental awareness),software,Y
+3,ArcGIS (novice),software,Y
+4,Microsoft Suite (advanced),software,Y
+5,LaTEX (novice),software,Y
+6,Surveying ,field,Y
+7,Electrical Resistivity Tomography,field,Y
+8,Environmental Data Loggers,field,Y
+9,Soil profile and sampling protocol,field,Y
+10,Water sampling,field,Y
+11,Statistics,stats,Y

@@ -33,29 +33,9 @@ I have a PhD in palaeo-climatology and am currently working in hydrological sedi
 
 # Experience
 
-<!-- ## Research  -->
-<!-- ```{r experience} -->
-<!-- experience <- read_csv("data/experience.csv") -->
+## Research
 
-<!-- experience <- experience %>%  -->
-<!--   mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>%  -->
-<!--   mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%  -->
-<!--   arrange(desc(end)) -->
-
-<!-- detailed_entries(experience, -->
-<!--     what = glue("{role}, {where}"), -->
-<!--     when = as.character( -->
-<!--       glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} -  -->
-<!--            {if_else(!is.na(end),  -->
-<!--            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")), -->
-<!--     # with = employer, -->
-<!--     where = glue("{city}, {state}, {country}"))#, -->
-<!--     # why = accomplishments)               -->
-
-
-<!-- ``` -->
-
-```{r experience 2}
+```{r experience}
 job.titles <- read_csv("data/experience.csv")
 job.descriptions <- read_csv("data/jobdesc.csv")
 
@@ -80,7 +60,7 @@ job.titles %>%
       glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} - 
            {if_else(!is.na(end), 
            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
-    with = dept,
+    with = glue("{dept}, {where}"),
     where = glue("{city}, {state}, {country}"),
     why = accomplishments)
 
@@ -100,40 +80,54 @@ fund <- read_csv("data/teaching.csv")
 
 detailed_entries(fund, 
                  when = years,
-                 what = paste(role, course),
-                 where = university,
+                 what = paste(role, course, sep = ": "),
+                 where = location,
+                 with = paste(department, university, sep = ", "),
                  .protect = FALSE) %>% 
   arrange(desc(when))
 ```
-
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I have taught into since its inception at UWA, has consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70th percentile of UWA courses.
 
 # Education
 ```{r edu1, include = FALSE}
+
 edu.raw <- read_csv("data/education.csv")
+
+edu.raw <- edu.raw %>% 
+  mutate(start_date=as.Date(start_date, format = "%d/%m/%Y")) %>% 
+  mutate(end_date=as.Date(end_date, format = "%d/%m/%Y")) %>% 
+  arrange(desc(end_date))
+
+
 edu1 <- which(is.na(edu.raw$thesis))
 edu2 <- edu.raw[-edu1,]
 
 edu3 <- edu2 %>% 
   mutate(pi = dplyr::if_else(!is.na(pi), glue("Supervisors: {pi}"), "Supervisor: NA"),
          thesis = dplyr::if_else(!is.na(thesis), glue(" \\textbf{Thesis: [thesis]}", .open = "[", .close = "]"),glue(NA))) %>% 
-  gather(thesis, pi, key = "whytype", value = "why")
+  gather(thesis, pi, key = "whytype", value = "why") %>% 
+    arrange(desc(end_date))
 edu3["why"] 
 
 edu4 <- edu.raw[edu1,] 
 ```
 
 ```{r edu2}
+
 detailed_entries(edu3, 
-                 when = glue("{start_date}--{end_date}"),
+                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} - 
+           {if_else(!is.na(end_date), 
+           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
                  what = paste0(degree," (", major, ")"),
                  # what2 = major,
                  where = location,
-                 with = university,
+                 with = paste(department, university, sep = ", "),
                  why = why,
-                 .protect = FALSE) %>% 
-  arrange(desc(when))
+                 .protect = FALSE) 
 detailed_entries(edu4, 
-                 when = glue("{start_date}--{end_date}"),
+                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} - 
+           {if_else(!is.na(end_date), 
+           paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
                  what = paste0(degree," (", major, ")"),
                  # what2 = major,
                  where = location,
@@ -163,13 +157,128 @@ detailed_entries(fund,
 
 
 # Conference Presentations
+```{r presentations, include =FALSE}
+presentations.raw <- read_csv("data/presentations.csv")
+presentations <- 
+  presentations.raw %>% 
+  mutate(when=as.Date(when, format = "%d/%m/%Y")) %>% 
+  arrange(desc(when))
+
+```
+## Talks
+```{r talks}
+presentations %>%  
+  filter(tag %in% c("talk")) %>% 
+  arrange(desc(when)) %>% 
+  detailed_entries(what = title,
+                   when = glue("{month(when, label = TRUE)} {year(when)}"),
+                   with = paste(conference,location, sep = ", "),
+                   where = authors,
+                   .protect = FALSE)
+
+```
+
+## Posters
+
+```{r posters}
+presentations %>%  
+  filter(tag %in% c("poster")) %>% 
+  arrange(desc(when)) %>% 
+  detailed_entries(what = title,
+                   when = glue("{month(when, label = TRUE)} {year(when)}"),
+                   with = paste(conference,location, sep = ", "),
+                   where = authors,
+                   .protect = FALSE)
+```
+
+
 
 # Skills
+## Software
+```{r softskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
+
+skills.titles %>% 
+  filter(., include == "Y") %>% 
+  filter(tag %in% c("software")) %>% 
+  # Join job descriptions
+  left_join(skills.descriptions) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
+
+```
+
+## Statistical
+
+```{r statskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
+
+skills.titles %>% 
+  filter(., include == "Y") %>% 
+  filter(tag %in% c("stats")) %>% 
+  # Join job descriptions
+  left_join(skills.descriptions) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
+
+```
+
+## Field
+```{r fieldskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
+
+skills.titles %>% 
+  filter(., include == "Y") %>% 
+  filter(tag %in% c("field")) %>% 
+  # Join job descriptions
+  left_join(skills.descriptions) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
+
+```
 
 # Service
-## Volunteer Positions
 
-## Presented Workshops
+```{r servics}
+service.titles <- read_csv("data/service.csv")
+service.descriptions <- read_csv("data/servicedesc.csv")
+
+service.titles <- service.titles %>% 
+  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>% 
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+  arrange(desc(end))
+
+service.descriptions <- service.descriptions %>% 
+  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>% 
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+  arrange(desc(end))
+
+service.titles %>% 
+  arrange(desc(start)) %>% 
+  # Join job descriptions
+  left_join(service.descriptions) %>% 
+  # Arrange by descending begin date
+  arrange(desc(end)) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = role,
+    when = as.character(
+      glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} - 
+           {month(end, label = TRUE, abbr = TRUE)} {year(end)}")),
+    why = accomplishment)
+
+
+```
+
 
 # Professional Development
 ```{r pd}
@@ -187,33 +296,17 @@ detailed_entries(pd,
 
 ```
 
-# References
-```{r refs}
-refs<- read_csv("data/refs.csv")
-refs <- refs %>% 
-  filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees
+# Referees
 
-detailed_entries(refs,
-  what = name,  
-  when = role,
-  with = where,
-  where = contact)
+<!-- ```{r refs} -->
+<!-- refs<- read_csv("data/refs.csv") -->
+<!-- refs <- refs %>%  -->
+<!--   filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees -->
 
-```
+<!-- detailed_entries(refs, -->
+<!--   what = name,   -->
+<!--   when = role, -->
+<!--   with = where, -->
+<!--   where = contact) -->
 
-
-<!-- # ```{r refs} -->
-<!-- # tribble( -->
-<!-- #   ~Name, ~Title, ~Contact, -->
-<!-- #   'Dr. Nik Callow',  "Senior Lecturer, School of Agriculture and Environment, The University of Western Australia", "nik.callow@uwa.edu.au; +61 8 6488 1924", -->
-<!-- #   'Professor Hamish McGowan',  "School of Earth and Environmental Sciences, The University of Queensland", "h.mcgowan@uq.edu.au", -->
-<!-- #   'Dr. Gavan McGrath',"Research Hydrologist, WA Dept. of Biodiversity Conservations and Attractions", "gavan.mcgrath@dbca.wa.gov.au", -->
-<!-- #   'Bronwyn Bosomworth',  "A/Senior Scientist Land and Water Science, QLD Dept. of Natural Resources, Mining, and Energy", "bronwyn.bosomworth@dnrme.qld.gov.au" -->
-<!-- # ) %>%  -->
-<!-- #   detailed_entries( -->
-<!-- #     what = Name,  -->
-<!-- #     with = Title, -->
-<!-- #     where = Contact -->
-<!-- #   ) -->
-<!-- # ``` -->
-
+<!-- ``` -->
