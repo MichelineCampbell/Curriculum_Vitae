@@ -1,0 +1,122 @@
+---
+name: Dr. Micheline Campbell
+date: "`r format(Sys.time(), '%B, %Y')`"
+qualifications: BA(Hons), PhD
+position: Scientist, QLD Dept. of Natural Resources, Mines, and Energy
+address: Rockhampton, Australia
+phone: +61 411 282 657
+# www: mariecurie.com
+email: michelineleecampbell@gmail.com
+# website: mitchelloharawild.com
+github: MichelineCampbell
+twitter: michcampbell_
+headcolor: 414141
+# date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::moderncv:
+  # vitae::awesomecv:
+    theme: classic
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(scholar)
+library(readr)
+library(tidyverse)
+library(glue)
+```
+
+# Professional Summary 
+
+I am a former climatologist, currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and continue teaching and engaging with undergraduate and postgraduate students. 
+
+# Experience
+
+## Research
+
+## Teaching
+
+# Education
+```{r edu1, include = FALSE}
+edu.raw <- read_csv("data/education.csv")
+edu1 <- which(is.na(edu.raw$thesis))
+edu2 <- edu.raw[-edu1,]
+
+edu3 <- edu2 %>% 
+  mutate(pi = dplyr::if_else(!is.na(pi), glue("Supervisors: {pi}"), "Supervisor: NA"),
+         thesis = dplyr::if_else(!is.na(thesis), glue(" \\textbf{Thesis: [thesis]}", .open = "[", .close = "]"),glue(NA))) %>% 
+  gather(thesis, pi, key = "whytype", value = "why")
+edu3["why"] 
+
+edu4 <- edu.raw[edu1,] 
+```
+
+```{r edu2}
+detailed_entries(edu3, 
+                 when = glue("{start_date}--{end_date}"),
+                 what = paste0(degree," (", major, ")"),
+                 # what2 = major,
+                 where = location,
+                 with = university,
+                 why = why,
+                 .protect = FALSE) %>% 
+  arrange(desc(when))
+detailed_entries(edu4, 
+                 when = glue("{start_date}--{end_date}"),
+                 what = paste0(degree," (", major, ")"),
+                 # what2 = major,
+                 where = location,
+                 with = university,
+                 .protect = FALSE)
+```
+
+# Publications
+```{r publications}
+# add in review
+bibliography_entries("data/my_pubs.bib") %>% 
+  dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
+```
+
+# Funding and Scholarships
+
+# Conference Presentations
+
+# Skills
+
+# Service
+## Volunteer Positions
+
+## Presented Workshops
+
+# Professional Development
+
+# References
+```{r refs}
+refs<- read_csv("data/refs.csv")
+refs <- refs %>% 
+  filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees
+
+detailed_entries(refs,
+  what = name,  
+  when = role,
+  with = where,
+  where = contact)
+
+```
+
+
+<!-- # ```{r refs} -->
+<!-- # tribble( -->
+<!-- #   ~Name, ~Title, ~Contact, -->
+<!-- #   'Dr. Nik Callow',  "Senior Lecturer, School of Agriculture and Environment, The University of Western Australia", "nik.callow@uwa.edu.au; +61 8 6488 1924", -->
+<!-- #   'Professor Hamish McGowan',  "School of Earth and Environmental Sciences, The University of Queensland", "h.mcgowan@uq.edu.au", -->
+<!-- #   'Dr. Gavan McGrath',"Research Hydrologist, WA Dept. of Biodiversity Conservations and Attractions", "gavan.mcgrath@dbca.wa.gov.au", -->
+<!-- #   'Bronwyn Bosomworth',  "A/Senior Scientist Land and Water Science, QLD Dept. of Natural Resources, Mining, and Energy", "bronwyn.bosomworth@dnrme.qld.gov.au" -->
+<!-- # ) %>%  -->
+<!-- #   detailed_entries( -->
+<!-- #     what = Name,  -->
+<!-- #     with = Title, -->
+<!-- #     where = Contact -->
+<!-- #   ) -->
+<!-- # ``` -->
+
