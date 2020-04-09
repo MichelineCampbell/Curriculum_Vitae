@@ -24,17 +24,88 @@ library(scholar)
 library(readr)
 library(tidyverse)
 library(glue)
+library(lubridate)
 ```
 
 # Professional Summary 
 
-I am a former climatologist, currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and continue teaching and engaging with undergraduate and postgraduate students. 
+I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and continue teaching and engaging with undergraduate and postgraduate students. 
 
 # Experience
 
-## Research
+<!-- ## Research  -->
+<!-- ```{r experience} -->
+<!-- experience <- read_csv("data/experience.csv") -->
 
-## Teaching
+<!-- experience <- experience %>%  -->
+<!--   mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>%  -->
+<!--   mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%  -->
+<!--   arrange(desc(end)) -->
+
+<!-- detailed_entries(experience, -->
+<!--     what = glue("{role}, {where}"), -->
+<!--     when = as.character( -->
+<!--       glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} -  -->
+<!--            {if_else(!is.na(end),  -->
+<!--            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")), -->
+<!--     # with = employer, -->
+<!--     where = glue("{city}, {state}, {country}"))#, -->
+<!--     # why = accomplishments)               -->
+
+
+<!-- ``` -->
+
+```{r experience 2}
+job.titles <- read_csv("data/experience.csv")
+job.descriptions <- read_csv("data/jobdesc.csv")
+
+job.titles <- job.titles %>% 
+  mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>% 
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+  arrange(desc(end))
+
+
+job.titles %>% 
+  # Only 5 most recent jobs
+  arrange(desc(begin)) %>% 
+  filter(row_number() <= 5) %>% 
+  # Join job descriptions
+  left_join(job.descriptions) %>% 
+  # Arrange by descending begin date
+  arrange(desc(begin)) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = role,
+    when = as.character(
+      glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} - 
+           {if_else(!is.na(end), 
+           paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
+    with = dept,
+    where = glue("{city}, {state}, {country}"),
+    why = accomplishments)
+
+
+```
+
+
+
+
+
+
+
+
+## Teaching 
+```{r teaching}
+fund <- read_csv("data/teaching.csv")
+
+detailed_entries(fund, 
+                 when = years,
+                 what = paste(role, course),
+                 where = university,
+                 .protect = FALSE) %>% 
+  arrange(desc(when))
+```
+
 
 # Education
 ```{r edu1, include = FALSE}
@@ -78,6 +149,18 @@ bibliography_entries("data/my_pubs.bib") %>%
 ```
 
 # Funding and Scholarships
+```{r funding}
+fund <- read_csv("data/funding.csv")
+
+detailed_entries(fund, 
+                 when = years,
+                 what = paste(funder, grant),
+                 where = amount,
+                 .protect = FALSE) %>% 
+  arrange(desc(when))
+
+```
+
 
 # Conference Presentations
 
@@ -89,6 +172,20 @@ bibliography_entries("data/my_pubs.bib") %>%
 ## Presented Workshops
 
 # Professional Development
+```{r pd}
+pd <- read_csv("data/pd.csv")
+
+pd <- pd %>%
+  filter(., include == "Y") %>% 
+  arrange(desc(date))
+
+
+detailed_entries(pd,
+  what = title,
+  when = date,
+  with = location) 
+
+```
 
 # References
 ```{r refs}
