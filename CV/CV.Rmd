@@ -29,64 +29,7 @@ library(lubridate)
 
 # Professional Summary 
 
-I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and continue teaching and engaging with undergraduate and postgraduate students. 
-
-# Experience
-
-## Research
-
-```{r experience}
-job.titles <- read_csv("data/experience.csv")
-job.descriptions <- read_csv("data/jobdesc.csv")
-
-job.titles <- job.titles %>% 
-  mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>% 
-  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
-  arrange(desc(end))
-
-
-job.titles %>% 
-  # Only 5 most recent jobs
-  arrange(desc(begin)) %>% 
-  filter(row_number() <= 5) %>% 
-  # Join job descriptions
-  left_join(job.descriptions) %>% 
-  # Arrange by descending begin date
-  arrange(desc(begin)) %>% 
-  # Format as detailed entries
-  detailed_entries(
-    what = role,
-    when = as.character(
-      glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} - 
-           {if_else(!is.na(end), 
-           paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
-    with = glue("{dept}, {where}"),
-    where = glue("{city}, {state}, {country}"),
-    why = accomplishments)
-
-
-```
-
-
-
-
-
-
-
-
-## Teaching 
-```{r teaching}
-fund <- read_csv("data/teaching.csv")
-
-detailed_entries(fund, 
-                 when = years,
-                 what = paste(role, course, sep = ": "),
-                 where = location,
-                 with = paste(department, university, sep = ", "),
-                 .protect = FALSE) %>% 
-  arrange(desc(when))
-```
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I have taught into since its inception at UWA, has consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70th percentile of UWA courses.
+I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing with the aim of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and return to teaching and engaging with undergraduate and postgraduate students. 
 
 # Education
 ```{r edu1, include = FALSE}
@@ -135,26 +78,91 @@ detailed_entries(edu4,
                  .protect = FALSE)
 ```
 
+# Experience
+
+## Research
+
+```{r experience}
+job.titles <- read_csv("data/experience.csv")
+job.descriptions <- read_csv("data/jobdesc.csv")
+
+job.titles <- job.titles %>% 
+  mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>% 
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+  arrange(desc(end))
+
+
+job.titles %>% 
+  # Only 5 most recent jobs
+  arrange(desc(begin)) %>% 
+  filter(row_number() <= 5) %>% 
+  # Join job descriptions
+  left_join(job.descriptions) %>% 
+  # Arrange by descending begin date
+  arrange(desc(begin)) %>% 
+  # Format as detailed entries
+  detailed_entries(
+    what = role,
+    when = as.character(
+      glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} - 
+           {if_else(!is.na(end), 
+           paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
+    with = glue("{dept}, {where}"),
+    where = glue("{city}, {state}, {country}"),
+    why = accomplishments)
+
+
+```
+
+## Teaching 
+```{r teaching}
+fund <- read_csv("data/teaching.csv")
+
+detailed_entries(fund, 
+                 when = years,
+                 what = paste(role, course, sep = ": "),
+                 where = location,
+                 with = paste(department, university, sep = ", "),
+                 .protect = FALSE) %>% 
+  arrange(desc(when))
+```
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I have taught into since its inception at UWA, has consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70th percentile of UWA courses.
+
+# Funding and Scholarships
+```{r funding}
+fund <- read_csv("data/funding.csv")
+
+brief_entries(fund, 
+                 when = years,
+                 what = paste(funder, grant),
+                 with = amount,
+                 .protect = FALSE) %>% 
+  arrange(desc(when))
+
+```
+
+\newpage
 # Publications
+## Published
 ```{r publications}
 # add in review
 bibliography_entries("data/my_pubs.bib") %>% 
   dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-# Funding and Scholarships
-```{r funding}
-fund <- read_csv("data/funding.csv")
-
-detailed_entries(fund, 
-                 when = years,
-                 what = paste(funder, grant),
-                 where = amount,
-                 .protect = FALSE) %>% 
-  arrange(desc(when))
-
+## In Review
+```{r inreview}
+# add in review
+bibliography_entries("data/pubs_in_review.bib")# %>% 
+  # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
 ```
 
+## In Preparation
+```{r inprep}
+# add in review
+bibliography_entries("data/pubs_in_prep.bib")# %>% 
+  # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
+```
 
 # Conference Presentations
 ```{r presentations, include =FALSE}
@@ -165,6 +173,7 @@ presentations <-
   arrange(desc(when))
 
 ```
+
 ## Talks
 ```{r talks}
 presentations %>%  
@@ -179,7 +188,6 @@ presentations %>%
 ```
 
 ## Posters
-
 ```{r posters}
 presentations %>%  
   filter(tag %in% c("poster")) %>% 
@@ -191,19 +199,21 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-
+\newpage
 
 # Skills
-## Software
-```{r softskills}
+
+## Statistical
+
+```{r softsskills}
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-skills.titles %>% 
-  filter(., include == "Y") %>% 
-  filter(tag %in% c("software")) %>% 
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("stats1")) %>%
   # Join job descriptions
-  left_join(skills.descriptions) %>% 
+  left_join(skills.descriptions) %>%
   # Format as detailed entries
   detailed_entries(
     what = skill,
@@ -211,17 +221,15 @@ skills.titles %>%
 
 ```
 
-## Statistical
-
-```{r statskills}
+```{r methodskills}
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-skills.titles %>% 
-  filter(., include == "Y") %>% 
-  filter(tag %in% c("stats")) %>% 
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("stats2")) %>%
   # Join job descriptions
-  left_join(skills.descriptions) %>% 
+  left_join(skills.descriptions) %>%
   # Format as detailed entries
   detailed_entries(
     what = skill,
@@ -234,11 +242,28 @@ skills.titles %>%
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-skills.titles %>% 
-  filter(., include == "Y") %>% 
-  filter(tag %in% c("field")) %>% 
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("field")) %>%
   # Join job descriptions
-  left_join(skills.descriptions) %>% 
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
+
+```
+
+## Other
+```{r otherkills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
+
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("other")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
   # Format as detailed entries
   detailed_entries(
     what = skill,
@@ -252,33 +277,32 @@ skills.titles %>%
 service.titles <- read_csv("data/service.csv")
 service.descriptions <- read_csv("data/servicedesc.csv")
 
-service.titles <- service.titles %>% 
-  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>% 
-  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+service.titles <- service.titles %>%
+  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>%
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%
   arrange(desc(end))
 
-service.descriptions <- service.descriptions %>% 
-  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>% 
-  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+service.descriptions <- service.descriptions %>%
+  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>%
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%
   arrange(desc(end))
 
-service.titles %>% 
-  arrange(desc(start)) %>% 
+service.titles %>%
+  arrange(desc(start)) %>%
   # Join job descriptions
-  left_join(service.descriptions) %>% 
+  left_join(service.descriptions) %>%
   # Arrange by descending begin date
-  arrange(desc(end)) %>% 
+  arrange(desc(end)) %>%
   # Format as detailed entries
   detailed_entries(
     what = role,
     when = as.character(
-      glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} - 
+      glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} -
            {month(end, label = TRUE, abbr = TRUE)} {year(end)}")),
     why = accomplishment)
 
 
 ```
-
 
 # Professional Development
 ```{r pd}
@@ -300,11 +324,11 @@ detailed_entries(pd,
 
 <!-- ```{r refs} -->
 <!-- refs<- read_csv("data/refs.csv") -->
-<!-- refs <- refs %>%  -->
+<!-- refs <- refs %>% -->
 <!--   filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees -->
 
 <!-- detailed_entries(refs, -->
-<!--   what = name,   -->
+<!--   what = name, -->
 <!--   when = role, -->
 <!--   with = where, -->
 <!--   where = contact) -->
