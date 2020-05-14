@@ -6,9 +6,9 @@ ID,skill,tag,include,extraID,extra
 8,Environmental Data Loggers,field,Y,a,Onset HOBO
 8,Environmental Data Loggers,field,Y,b,In-Situ Rugged Troll
 8,Environmental Data Loggers,field,Y,c,Driptych Stalagmate
-9,Soil profile and soil sampling protocol,field,Y,,
-10,Water sampling,field,Y,a,Isotopes
-10,Water sampling,field,Y,b,Nutrients
+9,Environmental Sampling,field,Y,a,Isotopes in water
+9,Environmental Sampling,field,Y,b,Nutrients in water
+9,Environmental Sampling,field,Y,c,Soil profiling
 11,Statistical Methods,stats2,Y,a,Time series analysis
 11,Statistical Methods,stats2,Y,b,Hypothesis testing
 11,Statistical Methods,stats2,Y,c,Social network analysis
@@ -16,8 +16,8 @@ ID,skill,tag,include,extraID,extra
 11,Statistical Methods,stats2,Y,e,Generalised linear models
 11,Statistical Methods,stats2,Y,f,Numerical modelling
 12,Statistical Software,stats1,Y,a,R (advanced)
-12,Statistical Software,stats1,Y,b,Python (fundamental awareness)
-13,Software,other,Y,a,ArcGIS (novice)
-13,Software,other,Y,b,Microsoft Suite (advanced)
-13,Software,other,Y,c,LaTEX (novice)
-13,Software,other,Y,d,Rmarkdown(fundamental awareness)
+13,Software,other,Y,a,Python (fundamental awareness)
+13,Software,other,Y,b,ArcGIS (novice)
+13,Software,other,Y,c,Microsoft Suite (advanced)
+13,Software,other,Y,d,LaTEX (novice)
+13,Software,other,Y,e,Rmarkdown (intermediate)

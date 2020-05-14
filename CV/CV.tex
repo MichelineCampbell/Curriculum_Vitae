@@ -1,0 +1,263 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%
+% Adapted to be an Rmarkdown template by Mitchell O'Hara-Wild
+% 8 February 2019
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,]{moderncv}
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+
+\definecolor{color0}{rgb}{0,0,0}% black
+\definecolor{color1}{HTML}{414141}% custom
+\definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
+
+\usepackage[scaled=0.86]{DejaVuSansMono}
+
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\def\donothing#1{#1}
+\def\emaillink#1{#1}
+
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75,footskip=52pt]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+
+%%%% BIBLIOGRAPHY
+% Bibliography formatting
+
+\usepackage[sorting=ynt,citestyle=authoryear,bibstyle=authoryear-comp,defernumbers=true,maxnames=20,giveninits=true, bibencoding=utf8, terseinits=true, uniquename=init,dashed=false,doi=false,isbn=false,natbib=true,backend=biber]{biblatex}
+
+\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat[article]{title}{\MakeCapital{#1}}
+\DeclareFieldFormat[article]{url}{}
+\DeclareFieldFormat[inproceedings]{title}{#1}
+\DeclareFieldFormat{shorthandwidth}{#1}
+\DeclareFieldFormat{extradate}{}
+
+% No dot before number of articles
+\usepackage{xpatch}
+\xpatchbibmacro{volume+number+eid}{\setunit*{\adddot}}{}{}{}
+
+% Remove In: for an article.
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+
+%\makeatletter
+%\DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
+%\makeatother
+
+\setlength{\bibitemsep}{1.8pt}
+\setlength{\bibhang}{.9cm}
+%\renewcommand{\bibfont}{\fontsize{12}{14}}
+
+\renewcommand*{\bibitem}{\addtocounter{papers}{1}\item \mbox{}\hskip-0.9cm\hbox to 0.9cm{\hfill\arabic{papers}.~\,}}
+\defbibenvironment{bibliography}
+{\list{}
+  {\setlength{\leftmargin}{\bibhang}%
+   \setlength{\itemsep}{\bibitemsep}%
+   \setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\bibitem}
+
+\renewcommand{\bibfont}{\normalfont\fontsize{10}{12.4}\selectfont}
+% Counters for keeping track of papers
+\newcounter{papers}
+
+\DeclareSortingTemplate{ty}{
+  \sort{
+    \field{title}
+  }
+  \sort{
+    \field{year}
+  }
+}
+\DeclareBibliographyCategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/my_pubs.bib-4335537}
+\DeclareBibliographyCategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_review.bib-4337287}
+\DeclareBibliographyCategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_prep.bib-4341537}
+\bibliography{C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/my_pubs.bib, C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_review.bib, C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_prep.bib}
+
+% personal data
+\name{}{Dr.~Micheline Campbell}
+\title{Scientist, QLD Dept. of Natural Resources, Mines, and Energy}
+\address{Rockhampton, Australia}{}{}
+\phone[mobile]{+61 411 282 657} % Phone number
+\email{\donothing{\href{mailto:michelineleecampbell@gmail.com}{\nolinkurl{michelineleecampbell@gmail.com}}}}
+ % Personal website
+
+\social[twitter]{michcampbell}
+\social[github]{MichelineCampbell}
+% \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+
+
+
+
+% Templates for detailed entries
+% Arguments: what when with where why
+\usepackage{etoolbox}
+\def\detaileditem#1#2#3#4#5{
+	\cventry{#2}{#1}{#3}{#4}{}{{\ifx#5\empty\else{\begin{itemize}#5\end{itemize}}\fi}}}
+\def\detailedsection#1{\nopagebreak#1}
+
+% Templates for brief entries
+% Arguments: what when with
+\def\briefitem#1#2#3{\cvitem{#2}{#1. #3}}
+\def\briefsection#1{\nopagebreak#1}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+
+
+\section{Professional Summary}\label{professional-summary}
+
+I have a PhD in palaeo-climatology and am currently working in
+hydrological sediment and nutrient transport. I have strong data science
+skills and have developed research skills applicable to a broad range of
+topics within the environmental sciences. My PhD research focused on
+stalagmite-based climate proxy records and associated karst
+geomorphology and groundwater hydrology, while my current position with
+the Queensland Department of Natural Resources, Mining, and Energy has a
+strong focus on field experiments and hypothesis testing. I am hoping to
+further my scientific career by securing a position where I can continue
+to use the skills I have developed, broaden my skill set, and return to
+teaching and engaging with undergraduate and postgraduate students.
+
+\section{Education}\label{education}
+
+\detailedsection{\detaileditem{PhD (Geography)}{Aug 2014 - 
+Jul 2019}{School of Agriculture and Environment, The University of Western Australia}{Perth, Western Australia, Australia}{\item{ \textbf{Thesis: Speleothem-based palaeo-climate research: Methodology, applications, and insight from the Snowy Mountains, southeast Australia}}\item{Supervisors: JN. Callow, H. McGowan, G.McGrath, H. Wong}}\detaileditem{BA (Hons, 1st Class) (Geography)}{Jul 2013 - 
+Jun 2014}{School of Geography, Planning, and Environmental Management, The University of Queensland}{Brisbane, QLD, Australia}{\item{ \textbf{Thesis: The Drip Hydrology of a Speleothem from the Yarrangobilly Caves, NSW, Australia}}\item{Supervisors: H. Mcgowan, JN. Callow}}}\detailedsection{\detaileditem{BA (Geography and Spanish)}{Feb 2010 - 
+Dec 2012}{The University of Queensland}{Brisbane, QLD, Australia}{\empty}}
+
+\section{Experience}\label{experience}
+
+\subsection{Research}\label{research}
+
+\detailedsection{\detaileditem{Scientist}{Feb 2020 - 
+present}{Land and Water Science Unit, QLD Dept. of Natural Resources, Mining and Energy}{Rockhampton, QLD, Australia}{\item{Analysed sugar cane trash trial data in relation to nutrient and sediment  transport.}\item{Found that a significant proportion of the variation of sediment transported in cane paddock runoff can be described by soil type and cane trash cover.}}\detaileditem{Research Assistant}{Aug 2019 - 
+Dec 2019}{School of Agriculture and Environment, University of Western Australia}{Perth, WA, Australia}{\item{Miscellaneous data analysis tasks}}\detaileditem{PhD Researcher}{Aug 2014 - 
+Jul 2019}{School of Agriculture and Environment, University of Western Australia}{Perth, WA, Australia}{\item{Developed two new palaeo-climate proxy records for south east Australia}\item{Showed that the climate of the LIG had similar significant periodicities to present, suggesting our long term climate patterns (e.g. PDO) will continue as temperatures increase with climate change.}\item{Used social network analysis to advance our understanding of methodologies applied in the speleothem palaeo-climate proxy community and the development of the field over time.}\item{Demonstrated that LA-ICP-MS and LA-ICP-AES of trace elements in speleothem calcite produce comparable results}}}
+
+\subsection{Teaching}\label{teaching}
+
+\detailedsection{\detaileditem{Tutor: Geographies of a Global City}{2018}{School of Agriculture and Enviroment, The University of Western Australia}{Perth, WA, Australia}{\empty}\detaileditem{Course Co-Coordinator and Lecturer: Catchment and River Processes}{2018}{School of Agriculture and Enviroment, The University of Western Australia}{Perth, WA, Australia}{\empty}\detaileditem{Tutor: Catchment and River Processes}{2014--2018}{School of Agriculture and Enviroment, The University of Western Australia}{Perth, WA, Australia}{\empty}}
+Teaching contributions include the delivery and creation of content for
+undergraduate and masters level units, both in the classroom/laboratory
+and in the field. Catchment and River Processes, which I taught into
+since its inception at UWA, consistently achieved high student ratings,
+including in 2018 when it received a score of 3.7/4. This placed it in
+the 70\textsuperscript{th} percentile of UWA courses.
+
+\section{Funding and Scholarships}\label{funding-and-scholarships}
+
+\detailedsection{\detaileditem{Australian Institute of Nuclear Science and Engineering Travel grant}{2018}{}{}{\item{\$1000}}\detaileditem{Australian and New Zealand Geomorphological Group Travel grant}{2017}{}{}{\item{\$300}}\detaileditem{University of Western Australia Travel grant}{2016}{}{}{\item{\$1850}}\detaileditem{Australian Institute of Nuclear Science and Engineering Postgraduate Ressarch Award Stipend}{2015--2018}{}{}{\item{\$7500pa}}\detaileditem{Australian Institute of Nuclear Science and Engineering Postgraduate Ressarch Award Analytical Budget}{2015--2018}{}{}{\item{\$10000pa}}\detaileditem{Australian Government Research Training Program Stipend}{2014--2018}{}{}{\item{\$26000pa}}\detaileditem{Snowy Hydro Ltd. Stipend}{2014--2015}{}{}{\item{\$5000pa}}\detaileditem{University of Western Australia Stipend}{2014}{}{}{\item{\$3000}}}
+
+\section{Publications}\label{publications}
+
+\subsection{Published}\label{published}
+
+\defbibheading{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/my_pubs.bib-4335537}{}
+\addtocategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/my_pubs.bib-4335537}{Campbell2018,
+McGowan2018,
+Campbell2017}
+\newrefcontext[sorting=none]\setcounter{papers}{0}\pagebreak[3]
+\printbibliography[category=bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/my_pubs.bib-4335537,heading=none]\setcounter{papers}{0}
+
+\nocite{Campbell2018,
+McGowan2018,
+Campbell2017}
+
+\subsection{In Review}\label{in-review}
+
+\defbibheading{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_review.bib-4337287}{}
+\addtocategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_review.bib-4337287}{McGowan2020}
+\newrefcontext[sorting=none]\setcounter{papers}{0}\pagebreak[3]
+\printbibliography[category=bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_review.bib-4337287,heading=none]\setcounter{papers}{0}
+
+\nocite{McGowan2020}
+
+\subsection{In Preparation}\label{in-preparation}
+
+\defbibheading{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_prep.bib-4341537}{}
+\addtocategory{bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_prep.bib-4341537}{Campbell2020,
+Campbell2020b}
+\newrefcontext[sorting=none]\setcounter{papers}{0}\pagebreak[3]
+\printbibliography[category=bib-C:/Users/21614006/Documents/Curriculum_Vitae/CV/data/pubs_in_prep.bib-4341537,heading=none]\setcounter{papers}{0}
+
+\nocite{Campbell2020,
+Campbell2020b}
+
+\section{Conference Presentations}\label{conference-presentations}
+
+\subsection{Talks}\label{talks}
+
+\detailedsection{\detaileditem{A geophysical approach to inform epikarst drip discharge modelling: Implications for palaeo-climate reconstruction}{Feb 2017}{Australian and New Zealand Geomorphological Group 17th Biennial Conference, Greytown, New Zealand}{Campbell, M., Callow, J.N., McGrath, G.S., McGowan, H.A}{\empty}}
+
+\subsection{Posters}\label{posters}
+
+\detailedsection{\detaileditem{Climate patterns in South-east Australia: the Last Interglacial vs. the last 2K}{Apr 2018}{20th EGU General Assembly, Vienna, Austria}{Campbell, M., Callow, J.N., McGowan, H.A., McGrath, G.S., Wong, H}{\empty}\detaileditem{First Insights of the Eemian Hydroclimate of the Snowy Mountains, Australia}{Feb 2017}{Australian and New Zealand Geomorphological Group 17th Biennial Conference, Greytown, New Zealand}{Campbell, M., Wong, H., McGrath, G.S., McGowan, H.A., Callow, J.N}{\empty}\detaileditem{First Insights of the Eemian Hydroclimate of the Snowy Mountains, Australia}{Dec 2016}{American Geophysical Union, Fall Meeting, San Francisco, USA}{Campbell, M. Wong, H., McGrath, G.S., McGowan, H.A., Callow, J.N}{\empty}}
+
+\section{Skills}\label{skills}
+
+\subsection{Statistical}\label{statistical}
+
+\detailedsection{\detaileditem{Statistical Software}{}{}{}{\item{R (advanced)}}}
+
+\detailedsection{\detaileditem{Statistical Methods}{}{}{}{\item{Time series analysis}\item{Hypothesis testing}\item{Social network analysis}\item{Linear models}\item{Generalised linear models}\item{Numerical modelling}}}
+
+\subsection{Field}\label{field}
+
+\detailedsection{\detaileditem{Surveying}{}{}{}{\item{Total station}\item{Real time kinematic}}\detaileditem{Electrical Resistivity Tomography}{}{}{}{\item{Deployment}\item{Data processing and analysis}}\detaileditem{Environmental Data Loggers}{}{}{}{\item{Onset HOBO}\item{In-Situ Rugged Troll}\item{Driptych Stalagmate}}\detaileditem{Environmental Sampling}{}{}{}{\item{Isotopes in water}\item{Nutrients in water}\item{Soil profiling}}}
+
+\subsection{Other}\label{other}
+
+\detailedsection{\detaileditem{Software}{}{}{}{\item{Python (fundamental awareness)}\item{ArcGIS (novice)}\item{Microsoft Suite (advanced)}\item{LaTEX (novice)}\item{Rmarkdown (intermediate)}}}
+
+\section{Service}\label{service}
+
+\detailedsection{\detaileditem{Participant, Science in Schools Program}{Aug 2017 -
+Aug 2017}{}{}{\item{Travelled to a regional town to share some love for science with primary school kids}}\detaileditem{Postgraduate representative to the School of Earth and Environment}{Feb 2015 -
+Jul 2017}{}{}{\item{Led the organisation of 2 annual symposia for postgraduate students within the school.}\item{Reported student concerns to the School administration}\item{Support and troubleshooting for new students}}\detaileditem{Co-Convenor, SEE LearnR Workshop}{Mar 2016 -
+Jan 2016}{}{}{\item{Organised a short series of 'Introduction to R' courses for the students and staff of the School of Earth and Environment}}\detaileditem{Guest presenter, ENVT2221: Global Climate Change and Biodiversity}{Oct 2014 -
+Oct 2014}{}{}{\item{Presented 'Palaeo-climate and Stalagmites' for 2nd-year Biology students at UWA}}}
+
+\section{Professional Development}\label{professional-development}
+
+\briefsection{\briefitem{Advanced R Workshop}{2020}{The University of Queensland, Australia}\briefitem{Intermediate R Workshop}{2020}{The University of Queensland, Australia}\briefitem{Weathering Climate Change: How have humans coped with climate change-and how will we continue to do so}{2018}{The University of Western Australia, Australia}\briefitem{Masterclass in Creating Opportunities and Developing your Research Skills}{2018}{The University of Western Australia, Australia}\briefitem{Synthesis II - From dynamics of structure to function of complex networks}{2016}{TU Dresden, Germany}\briefitem{Water on Earth: origin, reservoirs, and its global cycle}{2016}{The University of Western Australia, Australia}\briefitem{Fundamentals of the analysis of networks}{2016}{The University of Western Australia, Australia}\briefitem{Writing and publishing in scientific journals}{2014}{The University of Western Australia, Australia}}
+
+\section{Referees}\label{referees}
+
+
+\end{document}
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.

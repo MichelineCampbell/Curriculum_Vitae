@@ -9,13 +9,14 @@ phone: +61 411 282 657
 email: michelineleecampbell@gmail.com
 # website: mitchelloharawild.com
 github: MichelineCampbell
-twitter: michcampbell_
+twitter: michcampbell
 headcolor: 414141
 # date: "`r format(Sys.time(), '%B %Y')`"
 output: 
   vitae::moderncv:
   # vitae::awesomecv:
     theme: classic
+    keep_tex: true
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -29,7 +30,7 @@ library(lubridate)
 
 # Professional Summary 
 
-I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing with the aim of reducing nutrient and sediment runoff to Great Barrier Reef catchments. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skillset, and return to teaching and engaging with undergraduate and postgraduate students. 
+I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skill set, and return to teaching and engaging with undergraduate and postgraduate students. 
 
 # Education
 ```{r edu1, include = FALSE}
@@ -126,22 +127,22 @@ detailed_entries(fund,
                  .protect = FALSE) %>% 
   arrange(desc(when))
 ```
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I have taught into since its inception at UWA, has consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70th percentile of UWA courses.
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I taught into since its inception at UWA, consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses.
 
 # Funding and Scholarships
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
-brief_entries(fund, 
+detailed_entries(fund, 
                  when = years,
                  what = paste(funder, grant),
-                 with = amount,
+                 why = amount,
                  .protect = FALSE) %>% 
   arrange(desc(when))
 
 ```
 
-\newpage
+<!-- \newpage -->
 # Publications
 ## Published
 ```{r publications}
@@ -199,7 +200,7 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-\newpage
+<!-- \newpage -->
 
 # Skills
 
@@ -313,7 +314,7 @@ pd <- pd %>%
   arrange(desc(date))
 
 
-detailed_entries(pd,
+brief_entries(pd,
   what = title,
   when = date,
   with = location) 
