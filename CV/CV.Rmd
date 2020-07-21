@@ -2,8 +2,8 @@
 name: Dr. Micheline Campbell
 date: "`r format(Sys.time(), '%B, %Y')`"
 qualifications: BA(Hons), PhD
-position: Scientist, QLD Dept. of Natural Resources, Mines, and Energy
-address: Rockhampton, Australia
+position: Postdoctoral Researcher, University College Dublin
+address: Brisbane, Australia (due to covid-19)
 phone: +61 411 282 657
 # www: mariecurie.com
 email: michelineleecampbell@gmail.com
@@ -30,7 +30,7 @@ library(lubridate)
 
 # Professional Summary 
 
-I have a PhD in palaeo-climatology and am currently working in hydrological sediment and nutrient transport. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position with the Queensland Department of Natural Resources, Mining, and Energy has a strong focus on field experiments and hypothesis testing. I am hoping to further my scientific career by securing a position where I can continue to use the skills I have developed, broaden my skill set, and return to teaching and engaging with undergraduate and postgraduate students. 
+I have a PhD in palaeo-climatology and am currently employed as a postdoctoral researcher in the palaeoclimate of eastern Australia, with a focus on water security. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position at University College Dublin is focused on exploring future water security by expanding our knowledge of the palaeo-environment of eastern Australia. I am hoping to continue my career in the climate and hydrology area by securing a position where I can apply skills I have developed, develop new skills, and continue to engage with students and industry partners.  
 
 # Education
 ```{r edu1, include = FALSE}
@@ -133,16 +133,15 @@ Teaching contributions include the delivery and creation of content for undergra
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
-detailed_entries(fund, 
+x<- detailed_entries(fund,
                  when = years,
                  what = paste(funder, grant),
                  why = amount,
-                 .protect = FALSE) %>% 
+                 .protect = FALSE) %>%
   arrange(desc(when))
-
+x
 ```
 
-<!-- \newpage -->
 # Publications
 ## Published
 ```{r publications}
@@ -188,6 +187,8 @@ presentations %>%
 
 ```
 
+\newpage
+
 ## Posters
 ```{r posters}
 presentations %>%  
@@ -200,19 +201,17 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-<!-- \newpage -->
-
 # Skills
 
 ## Statistical
 
 ```{r softsskills}
-skills.titles <- read_csv("data/skills.csv")
-skills.descriptions <- read_csv("data/skillsdesc.csv")
+skills.titles <- read.csv("data/skills.csv")
+skills.descriptions <- read.csv("data/skillsdesc.csv")
 
 skills.titles %>%
-  filter(., include == "Y") %>%
-  filter(tag %in% c("stats1")) %>%
+  dplyr::filter(., include == "Y") %>%
+  dplyr::filter(tag %in% c("stats1")) %>%
   # Join job descriptions
   left_join(skills.descriptions) %>%
   # Format as detailed entries
@@ -255,6 +254,7 @@ skills.titles %>%
 
 ```
 
+\newpage
 ## Other
 ```{r otherkills}
 skills.titles <- read_csv("data/skills.csv")

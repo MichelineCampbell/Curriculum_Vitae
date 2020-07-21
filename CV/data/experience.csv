@@ -1,4 +1,5 @@
 jobID,begin,end,role,where,dept,city,state,country,supervisor
-1,4/02/2020,,Scientist,"QLD Dept. of Natural Resources, Mining and Energy",Land and Water Science Unit,Rockhampton,QLD,Australia,Bronwyn Bosomworth
+1,4/02/2020,3/07/2020,Scientist,"QLD Dept. of Natural Resources, Mining and Energy",Land and Water Science Unit,Rockhampton,QLD,Australia,Bronwyn Bosomworth
 2,11/08/2014,4/07/2019,PhD Researcher,University of Western Australia,School of Agriculture and Environment,Perth,WA,Australia,Nik Callow
 3,1/08/2019,31/12/2019,Research Assistant,University of Western Australia,School of Agriculture and Environment,Perth,WA,Australia,Nik Callow
+4,13/07/2020,,Postdoctoral Researcher,University College Dublin,School of Geography,Dublin/Brisbane,QLD,Ireland/Australia,Jacky Croke
