@@ -1,2 +1,2 @@
 # Curriculum_Vitae
-My CV, created with Rmarkdown (hopefully)
+My data-driven CV, created with Rmarkdown and vitae.
