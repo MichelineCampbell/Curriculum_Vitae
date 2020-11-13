@@ -30,7 +30,7 @@ library(lubridate)
 
 # Professional Summary 
 
-I have a PhD in palaeo-climatology and am currently employed as a postdoctoral researcher in the palaeoclimate of eastern Australia, with a focus on water security. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position at University College Dublin is focused on exploring future water security by expanding our knowledge of the palaeo-environment of eastern Australia. I am hoping to continue my career in the climate and hydrology area by securing a position where I can apply skills I have developed, develop new skills, and continue to engage with students and industry partners.  
+I have a PhD in palaeo-climatology and am currently employed as a postdoctoral researcher at University College Dublin, researching the palaeoclimate of eastern Australia, with a focus on water security. I have strong data science skills and have developed research skills applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position is focused on exploring future water security by expanding our knowledge of the palaeo-environment of eastern Australia. I am hoping to continue my career in climate and hydrology area by securing a position where I can apply skills I have developed, develop new skills, and continue to engage with students and industry partners.  
 
 # Education
 ```{r edu1, include = FALSE}
@@ -147,20 +147,20 @@ x
 ```{r publications}
 # add in review
 bibliography_entries("data/my_pubs.bib") %>% 
-  dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
+ dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-## In Review
-```{r inreview}
-# add in review
-bibliography_entries("data/pubs_in_review.bib")# %>% 
-  # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
-```
+<!-- ## In Review -->
+<!-- ```{r inreview} -->
+<!-- # add in review -->
+<!-- bibliography_entries("data/pubs_in_review.bib")# %>%  -->
+<!--   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley -->
+<!-- ``` -->
 
 ## In Preparation
 ```{r inprep}
 # add in review
-bibliography_entries("data/pubs_in_prep.bib")# %>% 
+bibliography_entries("data/pubs_in_prep.bib")# %>%
   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
 ```
 
@@ -323,15 +323,15 @@ brief_entries(pd,
 
 # Referees
 
-<!-- ```{r refs} -->
-<!-- refs<- read_csv("data/refs.csv") -->
-<!-- refs <- refs %>% -->
-<!--   filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees -->
+```{r refs}
+refs<- read_csv("data/refs.csv")
+refs <- refs %>%
+  filter(., include == "Y") ## condition comes from csv. change manually to include/exclude referees
 
-<!-- detailed_entries(refs, -->
-<!--   what = name, -->
-<!--   when = role, -->
-<!--   with = where, -->
-<!--   where = contact) -->
+detailed_entries(refs,
+  what = name,
+  when = role,
+  with = where,
+  where = contact)
 
-<!-- ``` -->
+```
