@@ -2,21 +2,23 @@
 name: Dr. Micheline Campbell
 date: "`r format(Sys.time(), '%B, %Y')`"
 qualifications: BA(Hons), PhD
-position: Postdoctoral Researcher, University College Dublin
-address: Brisbane, Australia (due to covid-19)
+position: Research Associate, the University of New South Wales
+address: Sydney, Australia
 phone: +61 411 282 657
-# www: mariecurie.com
 email: michelineleecampbell@gmail.com
 # website: mitchelloharawild.com
 github: MichelineCampbell
 twitter: michcampbell
 headcolor: 414141
 # date: "`r format(Sys.time(), '%B %Y')`"
-output: 
+output:
   vitae::moderncv:
-  # vitae::awesomecv:
     theme: classic
     keep_tex: true
+  # vitae::awesomecv:
+    # latexengine: pdflatex
+
+    
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -28,49 +30,49 @@ library(glue)
 library(lubridate)
 ```
 
-# Professional Summary 
+# Professional Summary
 
-I have a PhD in speleothem palaeo-climatology and am currently employed as a postdoctoral researcher at University College Dublin, researching the palaeo-climate of eastern Australia, with a focus on water security. I have strong data and field science skills and have developed a research skillset applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, while my current position is focused on exploring future water security by expanding our knowledge of the palaeo-environment of eastern Australia. I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers.   
+I have a PhD in speleothem palaeo-climatology and am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". I have strong data and field science skills and have developed a research skillset applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, and since then I have worked in the surface hydrology and palaeoclimate-water security nexus. I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers.
 
 # Education
 ```{r edu1, include = FALSE}
 
 edu.raw <- read_csv("data/education.csv")
 
-edu.raw <- edu.raw %>% 
-  mutate(start_date=as.Date(start_date, format = "%d/%m/%Y")) %>% 
-  mutate(end_date=as.Date(end_date, format = "%d/%m/%Y")) %>% 
+edu.raw <- edu.raw %>%
+  mutate(start_date=as.Date(start_date, format = "%d/%m/%Y")) %>%
+  mutate(end_date=as.Date(end_date, format = "%d/%m/%Y")) %>%
   arrange(desc(end_date))
 
 
 edu1 <- which(is.na(edu.raw$thesis))
 edu2 <- edu.raw[-edu1,]
 
-edu3 <- edu2 %>% 
+edu3 <- edu2 %>%
   mutate(pi = dplyr::if_else(!is.na(pi), glue("Supervisors: {pi}"), "Supervisor: NA"),
-         thesis = dplyr::if_else(!is.na(thesis), glue(" \\textbf{Thesis: [thesis]}", .open = "[", .close = "]"),glue(NA))) %>% 
-  gather(thesis, pi, key = "whytype", value = "why") %>% 
+         thesis = dplyr::if_else(!is.na(thesis), glue(" \\textbf{Thesis: [thesis]}", .open = "[", .close = "]"),glue(NA))) %>%
+  gather(thesis, pi, key = "whytype", value = "why") %>%
     arrange(desc(end_date))
-edu3["why"] 
+edu3["why"]
 
-edu4 <- edu.raw[edu1,] 
+edu4 <- edu.raw[edu1,]
 ```
 
 ```{r edu2}
 
-detailed_entries(edu3, 
-                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} - 
-           {if_else(!is.na(end_date), 
+detailed_entries(edu3,
+                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} -
+           {if_else(!is.na(end_date),
            paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
                  what = paste0(degree," (", major, ")"),
                  # what2 = major,
                  where = location,
                  with = paste(department, university, sep = ", "),
                  why = why,
-                 .protect = FALSE) 
-detailed_entries(edu4, 
-                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} - 
-           {if_else(!is.na(end_date), 
+                 .protect = FALSE)
+detailed_entries(edu4,
+                 when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} -
+           {if_else(!is.na(end_date),
            paste(month(end_date, label = TRUE, abbr = TRUE), year(end_date)), 'present')}")),
                  what = paste0(degree," (", major, ")"),
                  # what2 = major,
@@ -87,26 +89,26 @@ detailed_entries(edu4,
 job.titles <- read_csv("data/experience.csv")
 job.descriptions <- read_csv("data/jobdesc.csv")
 
-job.titles <- job.titles %>% 
-  mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>% 
-  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>% 
+job.titles <- job.titles %>%
+  mutate(begin=as.Date(begin, format = "%d/%m/%Y")) %>%
+  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%
   arrange(desc(end))
 
 
-job.titles %>% 
+job.titles %>%
   # Only 5 most recent jobs
-  arrange(desc(begin)) %>% 
-  filter(row_number() <= 5) %>% 
+  arrange(desc(begin)) %>%
+  filter(row_number() <= 5) %>%
   # Join job descriptions
-  left_join(job.descriptions) %>% 
+  left_join(job.descriptions) %>%
   # Arrange by descending begin date
-  arrange(desc(begin)) %>% 
+  arrange(desc(begin)) %>%
   # Format as detailed entries
   detailed_entries(
     what = role,
     when = as.character(
-      glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} - 
-           {if_else(!is.na(end), 
+      glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} -
+           {if_else(!is.na(end),
            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
     with = glue("{dept}, {where}"),
     where = glue("{city}, {state}, {country}"),
@@ -115,20 +117,21 @@ job.titles %>%
 
 ```
 
-## Teaching 
+## Teaching
 ```{r teaching}
 fund <- read_csv("data/teaching.csv")
 
-detailed_entries(fund, 
+detailed_entries(fund,
                  when = years,
                  what = paste(role, course, sep = ": "),
                  where = location,
                  with = paste(department, university, sep = ", "),
-                 .protect = FALSE) %>% 
+                 .protect = FALSE) %>%
   arrange(desc(when))
 ```
 Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I taught into since its inception at UWA, consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses.
 
+\newpage
 # Funding and Scholarships
 ```{r funding}
 fund <- read_csv("data/funding.csv")
@@ -146,7 +149,7 @@ x
 ## Published
 ```{r publications}
 # add in review
-bibliography_entries("data/my_pubs.bib") %>% 
+bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
@@ -157,29 +160,29 @@ bibliography_entries("data/pubs_in_review.bib")# %>%
   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-## In Preparation
-```{r inprep}
-# add in review
-bibliography_entries("data/pubs_in_prep.bib")# %>%
-  # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley
-```
+<!-- ## In Preparation -->
+<!-- ```{r inprep} -->
+<!-- # add in review -->
+<!-- bibliography_entries("data/pubs_in_prep.bib")# %>% -->
+<!--   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley -->
+<!-- ``` -->
 
 \newpage
 # Conference Presentations
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
-presentations <- 
-  presentations.raw %>% 
-  mutate(when=as.Date(when, format = "%d/%m/%Y")) %>% 
+presentations <-
+  presentations.raw %>%
+  mutate(when=as.Date(when, format = "%d/%m/%Y")) %>%
   arrange(desc(when))
 
 ```
 
 ## Talks
 ```{r talks}
-presentations %>%  
-  filter(tag %in% c("talk")) %>% 
-  arrange(desc(when)) %>% 
+presentations %>%
+  filter(tag %in% c("talk")) %>%
+  arrange(desc(when)) %>%
   detailed_entries(what = title,
                    when = glue("{month(when, label = TRUE)} {year(when)}"),
                    with = paste(conference,location, sep = ", "),
@@ -192,9 +195,9 @@ presentations %>%
 
 ## Posters
 ```{r posters}
-presentations %>%  
-  filter(tag %in% c("poster")) %>% 
-  arrange(desc(when)) %>% 
+presentations %>%
+  filter(tag %in% c("poster")) %>%
+  arrange(desc(when)) %>%
   detailed_entries(what = title,
                    when = glue("{month(when, label = TRUE)} {year(when)}"),
                    with = paste(conference,location, sep = ", "),
@@ -311,29 +314,29 @@ service.titles %>%
 pd <- read_csv("data/pd.csv")
 
 pd <- pd %>%
-  filter(., include == "Y") %>% 
+  filter(., include == "Y") %>%
   arrange(desc(date))
 
 
 brief_entries(pd,
   what = title,
   when = date,
-  with = location) 
+  with = location)
 
 ```
 
-# Referees
+<!-- # Referees -->
 
-```{r refs}
-refs<- read_csv("data/refs.csv")
-refs <- refs %>%
-  filter(., include == "Y") %>% 
-  arrange(desc(year))## condition comes from csv. change manually to include/exclude referees
+<!-- ```{r refs} -->
+<!-- refs<- read_csv("data/refs.csv") -->
+<!-- refs <- refs %>% -->
+<!--   filter(., include == "Y") %>% -->
+<!--   arrange(desc(year))## condition comes from csv. change manually to include/exclude referees -->
 
-detailed_entries(refs,
-  what = name,
-  when = role,
-  with = where,
-  where = contact)
+<!-- detailed_entries(refs, -->
+<!--   what = name, -->
+<!--   when = role, -->
+<!--   with = where, -->
+<!--   where = contact) -->
 
-```
+<!-- ``` -->
