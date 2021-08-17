@@ -283,9 +283,11 @@ service.titles <- read_csv("data/service.csv")
 service.descriptions <- read_csv("data/servicedesc.csv")
 
 service.titles <- service.titles %>%
-  mutate(start=as.Date(start, format = "%d/%m/%Y")) %>%
-  mutate(end=as.Date(end, format = "%d/%m/%Y")) %>%
-  arrange(desc(end))
+  mutate(start = as.Date(start, format = "%d/%m/%Y")) %>%
+  mutate(end = as.Date(end, format = "%d/%m/%Y")) %>%
+  arrange(desc(end)) 
+
+
 
 service.descriptions <- service.descriptions %>%
   mutate(start=as.Date(start, format = "%d/%m/%Y")) %>%
@@ -297,13 +299,21 @@ service.titles %>%
   # Join job descriptions
   left_join(service.descriptions) %>%
   # Arrange by descending begin date
-  arrange(desc(end)) %>%
+  arrange(desc(start)) %>%
   # Format as detailed entries
   detailed_entries(
     what = role,
     when = as.character(
       glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} -
-           {month(end, label = TRUE, abbr = TRUE)} {year(end)}")),
+           {if_else(!is.na(end),
+           paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'Present')}")),
+    
+    
+    
+    # when = as.character(
+#       glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} -
+#            {if_else(!is.na(end),
+#            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
     why = accomplishment)
 
 
@@ -325,18 +335,40 @@ brief_entries(pd,
 
 ```
 
-<!-- # Referees -->
+# Professional Memberships
+```{r memberships}
+pm <- read_csv("data/prof_memberships.csv")
 
-<!-- ```{r refs} -->
-<!-- refs<- read_csv("data/refs.csv") -->
-<!-- refs <- refs %>% -->
-<!--   filter(., include == "Y") %>% -->
-<!--   arrange(desc(year))## condition comes from csv. change manually to include/exclude referees -->
+pm <- pm %>%
+  # filter(., include == "Y") %>%
+  arrange(desc(start)) %>% 
+  mutate(start=as.Date(start, format = "%d/%m/%Y"))
+         # end = as.character(end))
 
-<!-- detailed_entries(refs, -->
-<!--   what = name, -->
-<!--   when = role, -->
-<!--   with = where, -->
-<!--   where = contact) -->
 
-<!-- ``` -->
+
+brief_entries(pm,
+  what = group,
+  when = as.character(
+      glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} -
+           {if_else(!is.na(end),
+           paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'Present')}")))
+
+```
+
+
+# Referees
+
+```{r refs}
+refs<- read_csv("data/refs.csv")
+refs <- refs %>%
+  filter(., include == "Y") %>%
+  arrange(desc(year))## condition comes from csv. change manually to include/exclude referees
+
+detailed_entries(refs,
+  what = name,
+  when = role,
+  with = where,
+  where = contact)
+
+```
