@@ -153,6 +153,7 @@ bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
+\newpage
 ## In Review
 ```{r inreview}
 # add in review
@@ -167,7 +168,7 @@ bibliography_entries("data/pubs_in_review.bib")# %>%
 <!--   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley -->
 <!-- ``` -->
 
-\newpage
+<!-- \newpage -->
 # Conference Presentations
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
