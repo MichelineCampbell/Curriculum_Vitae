@@ -2,7 +2,7 @@
 name: Dr. Micheline Campbell
 date: "`r format(Sys.time(), '%B, %Y')`"
 qualifications: BA(Hons), PhD
-position: Research Associate, the University of New South Wales
+position: Research Associate, UNSW Sydney
 address: Sydney, Australia
 phone: +61 411 282 657
 email: michelineleecampbell@gmail.com
@@ -11,6 +11,7 @@ github: MichelineCampbell
 twitter: michcampbell
 # headcolor: 990000
 headcolor: 125656
+# headcolor: 000000
 # date: "`r format(Sys.time(), '%B %Y')`"
 output:
   vitae::moderncv:
@@ -170,7 +171,7 @@ bibliography_entries("data/my_pubs.bib") %>%
 <!-- ``` -->
 
 <!-- \newpage -->
-# Conference Presentations
+# Conference Presentations (presenting only)
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
 presentations <-
@@ -207,6 +208,7 @@ presentations %>%
                    .protect = FALSE)
 ```
 
+\newpage
 # Skills
 
 ## Statistical
@@ -321,7 +323,7 @@ service.titles %>%
 
 ```
 
-# Completed Reviews
+# Completed Peer Reviews
 
 ```{r reviews}
 revs <- read_csv("data/reviews.csv")
