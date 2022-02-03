@@ -208,7 +208,7 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-\newpage
+<!-- \newpage -->
 # Skills
 
 ## Statistical
