@@ -138,13 +138,13 @@ Teaching contributions include the delivery and creation of content for undergra
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
-x<- detailed_entries(fund,
+detailed_entries(fund,
                  when = years,
                  what = paste(funder, grant),
                  why = amount,
                  .protect = FALSE) %>%
   arrange(desc(when))
-x
+
 ```
 
 # Publications
@@ -209,76 +209,76 @@ presentations %>%
 ```
 
 <!-- \newpage -->
-# Skills
+<!-- # Skills -->
 
-## Statistical
+<!-- ## Statistical -->
 
-```{r softsskills}
-skills.titles <- read.csv("data/skills.csv")
-skills.descriptions <- read.csv("data/skillsdesc.csv")
+<!-- ```{r softsskills} -->
+<!-- skills.titles <- read.csv("data/skills.csv") -->
+<!-- skills.descriptions <- read.csv("data/skillsdesc.csv") -->
 
-skills.titles %>%
-  dplyr::filter(., include == "Y") %>%
-  dplyr::filter(tag %in% c("stats1")) %>%
-  # Join job descriptions
-  left_join(skills.descriptions) %>%
-  # Format as detailed entries
-  detailed_entries(
-    what = skill,
-    why = extra)
+<!-- skills.titles %>% -->
+<!--   dplyr::filter(., include == "Y") %>% -->
+<!--   dplyr::filter(tag %in% c("stats1")) %>% -->
+<!--   # Join job descriptions -->
+<!--   left_join(skills.descriptions) %>% -->
+<!--   # Format as detailed entries -->
+<!--   detailed_entries( -->
+<!--     what = skill, -->
+<!--     why = extra) -->
 
-```
+<!-- ``` -->
 
-```{r methodskills}
-skills.titles <- read_csv("data/skills.csv")
-skills.descriptions <- read_csv("data/skillsdesc.csv")
+<!-- ```{r methodskills} -->
+<!-- skills.titles <- read_csv("data/skills.csv") -->
+<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
 
-skills.titles %>%
-  filter(., include == "Y") %>%
-  filter(tag %in% c("stats2")) %>%
-  # Join job descriptions
-  left_join(skills.descriptions) %>%
-  # Format as detailed entries
-  detailed_entries(
-    what = skill,
-    why = extra)
+<!-- skills.titles %>% -->
+<!--   filter(., include == "Y") %>% -->
+<!--   filter(tag %in% c("stats2")) %>% -->
+<!--   # Join job descriptions -->
+<!--   left_join(skills.descriptions) %>% -->
+<!--   # Format as detailed entries -->
+<!--   detailed_entries( -->
+<!--     what = skill, -->
+<!--     why = extra) -->
 
-```
+<!-- ``` -->
 
-## Field
-```{r fieldskills}
-skills.titles <- read_csv("data/skills.csv")
-skills.descriptions <- read_csv("data/skillsdesc.csv")
+<!-- ## Field -->
+<!-- ```{r fieldskills} -->
+<!-- skills.titles <- read_csv("data/skills.csv") -->
+<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
 
-skills.titles %>%
-  filter(., include == "Y") %>%
-  filter(tag %in% c("field")) %>%
-  # Join job descriptions
-  left_join(skills.descriptions) %>%
-  # Format as detailed entries
-  detailed_entries(
-    what = skill,
-    why = extra)
+<!-- skills.titles %>% -->
+<!--   filter(., include == "Y") %>% -->
+<!--   filter(tag %in% c("field")) %>% -->
+<!--   # Join job descriptions -->
+<!--   left_join(skills.descriptions) %>% -->
+<!--   # Format as detailed entries -->
+<!--   detailed_entries( -->
+<!--     what = skill, -->
+<!--     why = extra) -->
 
-```
+<!-- ``` -->
 
-<!-- \newpage -->
-## Other
-```{r otherkills}
-skills.titles <- read_csv("data/skills.csv")
-skills.descriptions <- read_csv("data/skillsdesc.csv")
+<!-- <!-- \newpage --> 
+<!-- ## Other -->
+<!-- ```{r otherkills} -->
+<!-- skills.titles <- read_csv("data/skills.csv") -->
+<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
 
-skills.titles %>%
-  filter(., include == "Y") %>%
-  filter(tag %in% c("other")) %>%
-  # Join job descriptions
-  left_join(skills.descriptions) %>%
-  # Format as detailed entries
-  detailed_entries(
-    what = skill,
-    why = extra)
+<!-- skills.titles %>% -->
+<!--   filter(., include == "Y") %>% -->
+<!--   filter(tag %in% c("other")) %>% -->
+<!--   # Join job descriptions -->
+<!--   left_join(skills.descriptions) %>% -->
+<!--   # Format as detailed entries -->
+<!--   detailed_entries( -->
+<!--     what = skill, -->
+<!--     why = extra) -->
 
-```
+<!-- ``` -->
 
 # Service 
 
