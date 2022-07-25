@@ -282,7 +282,7 @@ presentations %>%
 
 # Service 
 
-```{r servics}
+```{r servics} 
 service.titles <- read_csv("data/service.csv")
 service.descriptions <- read_csv("data/servicedesc.csv")
 
