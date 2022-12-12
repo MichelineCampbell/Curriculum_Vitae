@@ -147,8 +147,9 @@ detailed_entries(fund,
 
 ```
 
+\newpage
 # Publications
-## Published
+
 ```{r publications}
 # add in review
 bibliography_entries("data/my_pubs.bib") %>%
@@ -194,7 +195,7 @@ presentations %>%
 
 ```
 
-<!-- \newpage -->
+\newpage
 
 ## Posters
 ```{r posters}
