@@ -195,7 +195,7 @@ presentations %>%
 
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Posters
 ```{r posters}
