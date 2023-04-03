@@ -9,6 +9,9 @@ email: michelineleecampbell@gmail.com
 # website: michelinecampbell.netlify.app
 github: MichelineCampbell
 twitter: michcampbell
+
+
+# mastodon: michcampbell
 # headcolor: 990000
 headcolor: 125656
 # headcolor: 000000
@@ -70,7 +73,7 @@ detailed_entries(edu3,
                  # what2 = major,
                  where = location,
                  with = paste(department, university, sep = ", "),
-                 why = why,
+                 #why = why,
                  .protect = FALSE)
 detailed_entries(edu4,
                  when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} -
