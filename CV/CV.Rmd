@@ -37,7 +37,9 @@ library(lubridate)
 
 # Professional Summary
 
-I have a PhD in speleothem palaeo-climatology and am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". I have strong data and field science skills and have developed a research skillset applicable to a broad range of topics within the environmental sciences. My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, and since then I have worked in the surface hydrology and palaeoclimate-water security nexus. I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers.
+I have a PhD in speleothem palaeoclimatology and am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, and I also have experience in the surface hydrology and palaeoclimate-water security nexus. 
+
+<!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
 # Education
 ```{r edu1, include = FALSE}
@@ -134,9 +136,11 @@ detailed_entries(fund,
                  .protect = FALSE) %>%
   arrange(desc(when))
 ```
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I taught into since its inception at UWA, consistently achieved high student ratings, including in 2018 when it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses.
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I taught into for my entire time at UWA, consistently achieved high student ratings. 
 
-\newpage
+<!-- In 2018 it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses. -->
+
+<!-- \newpage -->
 # Funding and Scholarships
 ```{r funding}
 fund <- read_csv("data/funding.csv")
@@ -150,7 +154,7 @@ detailed_entries(fund,
 
 ```
 
-\newpage
+<!-- \newpage -->
 # Publications
 
 ```{r publications}
@@ -158,6 +162,18 @@ detailed_entries(fund,
 bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
+
+\newpage
+
+# Media
+
+```{r media}
+
+bibliography_entries("data/media.bib") %>%
+ dplyr::arrange(desc(issued))
+
+```
+
 
 <!-- \newpage -->
 <!-- ## In Review -->
@@ -283,7 +299,7 @@ presentations %>%
 <!--     why = extra) -->
 
 <!-- ``` -->
-
+<!-- \newpage -->
 # Service 
 
 ```{r servics} 
@@ -384,18 +400,18 @@ brief_entries(pm,
 ```
 
 
-# Referees
+<!-- # Referees -->
 
-```{r refs}
-refs<- read_csv("data/refs.csv")
-refs <- refs %>%
-  filter(., include == "Y") %>%
-  arrange(desc(year))## condition comes from csv. change manually to include/exclude referees
+<!-- ```{r refs} -->
+<!-- refs<- read_csv("data/refs.csv") -->
+<!-- refs <- refs %>% -->
+<!--   filter(., include == "Y") %>% -->
+<!--   arrange(desc(year))## condition comes from csv. change manually to include/exclude referees -->
 
-detailed_entries(refs,
-  what = name,
-  when = role,
-  with = where,
-  where = contact)
+<!-- detailed_entries(refs, -->
+<!--   what = name, -->
+<!--   when = role, -->
+<!--   with = where, -->
+<!--   where = contact) -->
 
-```
+<!-- ``` -->
