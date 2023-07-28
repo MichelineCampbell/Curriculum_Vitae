@@ -8,8 +8,8 @@ phone: +61 411 282 657
 email: michelineleecampbell@gmail.com
 # website: michelinecampbell.netlify.app
 github: MichelineCampbell
-twitter: michcampbell
-
+# twitter: michcampbell
+# pronouns: she
 
 # mastodon: michcampbell
 # headcolor: 990000
@@ -20,7 +20,7 @@ output:
   vitae::moderncv:
     theme: classic
     keep_tex: true
-  # vitae::awesomecv:
+  # vitae::awesomecv
     # latexengine: pdflatex
 
     
@@ -35,7 +35,7 @@ library(glue)
 library(lubridate)
 ```
 
-# Professional Summary
+# Professional summary
 
 I have a PhD in speleothem palaeoclimatology and am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, and I also have experience in the surface hydrology and palaeoclimate-water security nexus. 
 
@@ -141,7 +141,7 @@ Teaching contributions include the delivery and creation of content for undergra
 <!-- In 2018 it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses. -->
 
 <!-- \newpage -->
-# Funding and Scholarships
+# Funding and scholarships
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
@@ -165,7 +165,7 @@ bibliography_entries("data/my_pubs.bib") %>%
 
 \newpage
 
-# Media
+# Media and reports
 
 ```{r media}
 
@@ -191,7 +191,7 @@ bibliography_entries("data/media.bib") %>%
 <!-- ``` -->
 
 <!-- \newpage -->
-# Conference Presentations (presenting only)
+# Conference presentations (presenting only)
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
 presentations <-
@@ -343,7 +343,7 @@ service.titles %>%
 
 ```
 
-# Completed Peer Reviews
+# Completed peer reviews
 
 ```{r reviews}
 revs <- read_csv("data/reviews.csv")
@@ -362,7 +362,7 @@ brief_entries(revs,
 ```
 
 
-# Professional Development
+# Professional development
 ```{r pd}
 pd <- read_csv("data/pd.csv")
 
@@ -378,7 +378,7 @@ brief_entries(pd,
 
 ```
 
-# Professional Memberships
+# Professional memberships
 ```{r memberships}
 pm <- read_csv("data/prof_memberships.csv")
 
