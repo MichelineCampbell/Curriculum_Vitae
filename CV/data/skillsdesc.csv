@@ -1,23 +1,29 @@
 ID,skill,tag,include,extraID,extra
 6,Surveying ,field,Y,a,Total station
 6,Surveying ,field,Y,b,Real time kinematic
-7,Electrical Resistivity Tomography,field,Y,a,Deployment
-7,Electrical Resistivity Tomography,field,Y,b,Data processing and analysis
-8,Environmental Data Loggers,field,Y,a,Onset HOBO
-8,Environmental Data Loggers,field,Y,b,In-Situ Rugged Troll
-8,Environmental Data Loggers,field,Y,c,Driptych Stalagmate
-9,Environmental Sampling,field,Y,a,Isotopes in water
+7,Electrical Resistivity Tomography,field,N,a,Deployment
+7,Electrical Resistivity Tomography,field,N,b,Data processing and analysis
+8,Environmental Monitoring,field,Y,a,"Deployment and maintenance of environmental logger networks (e.g. discharge and temperature, pressure, and RH loggers)"
+9,Environmental Sampling,field,Y,a,Stable isotopes in water
 9,Environmental Sampling,field,Y,b,Nutrients in water
-9,Environmental Sampling,field,Y,c,Soil profiling
+9,Environmental Sampling,field,N,c,Soil profiling
 11,Statistical Methods,stats2,Y,a,Time series analysis
 11,Statistical Methods,stats2,Y,b,Hypothesis testing
 11,Statistical Methods,stats2,Y,c,Social network analysis
 11,Statistical Methods,stats2,Y,d,Linear models
 11,Statistical Methods,stats2,Y,e,Generalised linear models
 11,Statistical Methods,stats2,Y,f,Numerical modelling
-12,Statistical Software,stats1,Y,a,R (advanced)
-13,Software,other,Y,a,Python (fundamental awareness)
-13,Software,other,Y,b,ArcGIS (novice)
-13,Software,other,Y,c,Microsoft Suite (advanced)
-13,Software,other,Y,d,LaTEX (novice)
-13,Software,other,Y,e,Rmarkdown (intermediate)
+11,Statistical Methods,stats2,Y,g,Principal Component Analysis and similar methods
+11,Statistical Methods,stats2,Y,h,Data wrangling
+13,Software,other,Y,a,R (advanced)
+13,Software,other,Y,b,Python (fundamental awareness)
+13,Software,other,Y,c,ArcGIS (novice)
+13,Software,other,Y,d,QGIS (novice)
+13,Software,other,Y,e,Microsoft Suite (advanced)
+13,Software,other,Y,f,LaTEX (novice)
+13,Software,other,Y,g,Rmarkdown (intermediate)
+14,Sample preparation,lab,Y,a,Milling carbonates for IRMS
+14,Sample preparation,lab,Y,b,Thick section mounting for LA-ICP-MS and Synchrotron XFM
+14,Sample preparation,lab,Y,c,Cutting samples for U-Th dating
+15,Analysis,lab,Y,a,LA-ICP-MS and data reduction to quantify trace elements in speleothems
+15,Analysis,lab,Y,a,Synchrotron XFM elemental mapping and data processing to quantify trace elements in speleothems

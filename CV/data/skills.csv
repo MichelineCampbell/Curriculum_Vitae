@@ -1,9 +1,10 @@
 ID,skill,tag,include
 6,Surveying ,field,Y
-7,Electrical Resistivity Tomography,field,Y
-8,Environmental Data Loggers,field,Y
+7,Electrical Resistivity Tomography,field,N
+8,Environmental Monitoring,field,Y
 9,Environmental Sampling,field,Y
 11,Statistical Methods,stats2,Y
-12,Statistical Software,stats1,Y
+12,Statistical Software,stats1,N
 13,Software,other,Y
-,Soil profile and sampling protocol,,
+14,Sample preparation,lab,Y
+15,Analysis,lab,Y

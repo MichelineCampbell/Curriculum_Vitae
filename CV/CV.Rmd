@@ -37,7 +37,7 @@ library(lubridate)
 
 # Professional summary
 
-I have a PhD in speleothem palaeoclimatology and am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". My PhD research focused on stalagmite-based climate proxy records and associated karst geomorphology and groundwater hydrology, and I also have experience in the surface hydrology and palaeoclimate-water security nexus. 
+I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia. My research interests have continued to be based in Quaternary science, but while I have maintained my interest in stalagmite-derived climate proxy data, I have also worked in surface hydrology and the palaeoclimate-water security nexus. I am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists. 
 
 <!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
@@ -136,12 +136,11 @@ detailed_entries(fund,
                  .protect = FALSE) %>%
   arrange(desc(when))
 ```
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes, which I taught into for my entire time at UWA, consistently achieved high student ratings. 
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes is a field-based course which I taught into for my entire time at UWA, and which I co-coordinated in 2018. 
 
-<!-- In 2018 it received a score of 3.7/4. This placed it in the 70^th^ percentile of UWA courses. -->
 
 <!-- \newpage -->
-# Funding and scholarships
+# Grants and Awards
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
@@ -149,6 +148,7 @@ detailed_entries(fund,
                  when = years,
                  what = paste(funder, grant),
                  why = amount,
+                 where = leader,
                  .protect = FALSE) %>%
   arrange(desc(when))
 
@@ -163,7 +163,15 @@ bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-\newpage
+## Publications in review
+
+```{r inreview}
+bibliography_entries("data/pubs_in_review.bib") %>%
+ dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
+
+```
+
+<!-- \newpage -->
 
 # Media and reports
 
@@ -176,22 +184,7 @@ bibliography_entries("data/media.bib") %>%
 
 
 <!-- \newpage -->
-<!-- ## In Review -->
-<!-- ```{r inreview} -->
-<!-- # add in review -->
-<!-- bibliography_entries("data/pubs_in_review.bib")# %>% -->
-<!--   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley -->
-<!-- ``` -->
-
-<!-- ## In Preparation -->
-<!-- ```{r inprep} -->
-<!-- # add in review -->
-<!-- bibliography_entries("data/pubs_in_prep.bib")# %>% -->
-<!--   # dplyr::arrange(desc(year)) # bib from 'my_pubs' folder in Mendeley -->
-<!-- ``` -->
-
-<!-- \newpage -->
-# Conference presentations (presenting only)
+# Presentations (presenting only)
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
 presentations <-
@@ -214,7 +207,7 @@ presentations %>%
 
 ```
 
-<!-- \newpage -->
+\newpage
 
 ## Posters
 ```{r posters}
@@ -228,77 +221,108 @@ presentations %>%
                    .protect = FALSE)
 ```
 
+## Seminars
+
+```{r seminars}
+presentations %>%
+  filter(tag %in% c("seminar")) %>%
+  arrange(desc(when)) %>%
+  detailed_entries(what = title,
+                   when = glue("{month(when, label = TRUE)} {year(when)}"),
+                   with = paste(conference,location, sep = ", "),
+                   where = authors,
+                   .protect = FALSE)
+```
+
+
 <!-- \newpage -->
-<!-- # Skills -->
+# Skills
 
-<!-- ## Statistical -->
+## Statistical
 
-<!-- ```{r softsskills} -->
-<!-- skills.titles <- read.csv("data/skills.csv") -->
-<!-- skills.descriptions <- read.csv("data/skillsdesc.csv") -->
+```{r softsskills}
+skills.titles <- read.csv("data/skills.csv")
+skills.descriptions <- read.csv("data/skillsdesc.csv")
 
-<!-- skills.titles %>% -->
-<!--   dplyr::filter(., include == "Y") %>% -->
-<!--   dplyr::filter(tag %in% c("stats1")) %>% -->
-<!--   # Join job descriptions -->
-<!--   left_join(skills.descriptions) %>% -->
-<!--   # Format as detailed entries -->
-<!--   detailed_entries( -->
-<!--     what = skill, -->
-<!--     why = extra) -->
+skills.titles %>%
+  dplyr::filter(., include == "Y") %>%
+  dplyr::filter(tag %in% c("stats1")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
 
-<!-- ``` -->
+```
 
-<!-- ```{r methodskills} -->
-<!-- skills.titles <- read_csv("data/skills.csv") -->
-<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
+```{r methodskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-<!-- skills.titles %>% -->
-<!--   filter(., include == "Y") %>% -->
-<!--   filter(tag %in% c("stats2")) %>% -->
-<!--   # Join job descriptions -->
-<!--   left_join(skills.descriptions) %>% -->
-<!--   # Format as detailed entries -->
-<!--   detailed_entries( -->
-<!--     what = skill, -->
-<!--     why = extra) -->
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("stats2")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
 
-<!-- ``` -->
+```
 
-<!-- ## Field -->
-<!-- ```{r fieldskills} -->
-<!-- skills.titles <- read_csv("data/skills.csv") -->
-<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
+## Field
+```{r fieldskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-<!-- skills.titles %>% -->
-<!--   filter(., include == "Y") %>% -->
-<!--   filter(tag %in% c("field")) %>% -->
-<!--   # Join job descriptions -->
-<!--   left_join(skills.descriptions) %>% -->
-<!--   # Format as detailed entries -->
-<!--   detailed_entries( -->
-<!--     what = skill, -->
-<!--     why = extra) -->
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("field")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
 
-<!-- ``` -->
+```
 
-<!-- <!-- \newpage --> 
-<!-- ## Other -->
-<!-- ```{r otherkills} -->
-<!-- skills.titles <- read_csv("data/skills.csv") -->
-<!-- skills.descriptions <- read_csv("data/skillsdesc.csv") -->
+## Laboratory
+```{r labskills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
 
-<!-- skills.titles %>% -->
-<!--   filter(., include == "Y") %>% -->
-<!--   filter(tag %in% c("other")) %>% -->
-<!--   # Join job descriptions -->
-<!--   left_join(skills.descriptions) %>% -->
-<!--   # Format as detailed entries -->
-<!--   detailed_entries( -->
-<!--     what = skill, -->
-<!--     why = extra) -->
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("lab")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
 
-<!-- ``` -->
+```
+
+<!-- \newpage -->
+## Other
+```{r otherkills}
+skills.titles <- read_csv("data/skills.csv")
+skills.descriptions <- read_csv("data/skillsdesc.csv")
+
+skills.titles %>%
+  filter(., include == "Y") %>%
+  filter(tag %in% c("other")) %>%
+  # Join job descriptions
+  left_join(skills.descriptions) %>%
+  # Format as detailed entries
+  detailed_entries(
+    what = skill,
+    why = extra)
+
+```
 <!-- \newpage -->
 # Service 
 
