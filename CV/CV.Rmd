@@ -163,13 +163,13 @@ bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-## Publications in review
+<!-- ## Publications in review -->
 
-```{r inreview}
-bibliography_entries("data/pubs_in_review.bib") %>%
- dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
+<!-- ```{r inreview} -->
+<!-- bibliography_entries("data/pubs_in_review.bib") %>% -->
+<!--  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley -->
 
-```
+<!-- ``` -->
 
 <!-- \newpage -->
 
@@ -207,7 +207,7 @@ presentations %>%
 
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Posters
 ```{r posters}
@@ -220,6 +220,8 @@ presentations %>%
                    where = authors,
                    .protect = FALSE)
 ```
+
+\newpage
 
 ## Seminars
 
@@ -288,6 +290,8 @@ skills.titles %>%
     why = extra)
 
 ```
+
+\newpage
 
 ## Laboratory
 ```{r labskills}
