@@ -2,9 +2,9 @@
 name: Dr. Micheline Campbell
 date: "`r format(Sys.time(), '%B, %Y')`"
 qualifications: BA(Hons), PhD
-position: Research Associate, UNSW Sydney
-address: Sydney, Australia
-phone: +61 411 282 657
+position: Research Fellow, Max Planck Institute for Chemistry
+address: Mainz, Germany
+phone: +49 176 36125922
 email: michelineleecampbell@gmail.com
 # website: michelinecampbell.netlify.app
 github: MichelineCampbell
@@ -37,7 +37,8 @@ library(lubridate)
 
 # Professional summary
 
-I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia. My research interests have continued to be based in Quaternary science, but while I have maintained my interest in stalagmite-derived climate proxy data, I have also worked in surface hydrology and the palaeoclimate-water security nexus. I am currently employed as a research associate at the University of New South Wales, contributing to the Australian Research Council Discovery Project "Reconstructing Australia’s fire history from cave stalagmites". I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists. 
+<!-- I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia.  -->
+My research interests are in Quaternary science, with a focus on using stalagmite proxy data to investigate past environments. My curent focus is on researching past fire events, but I also have experience and interest in the climate-water security nexus. I am currently employed as a research fellow at Max Planck Institute for Chemistry. I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists. 
 
 <!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
@@ -163,13 +164,13 @@ bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-<!-- ## Publications in review -->
+## Publications in review
 
-<!-- ```{r inreview} -->
-<!-- bibliography_entries("data/pubs_in_review.bib") %>% -->
-<!--  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley -->
+```{r inreview}
+bibliography_entries("data/pubs_in_review.bib") %>%
+ dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 
-<!-- ``` -->
+```
 
 <!-- \newpage -->
 
@@ -183,7 +184,7 @@ bibliography_entries("data/media.bib") %>%
 ```
 
 
-<!-- \newpage -->
+\newpage
 # Presentations (presenting only)
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
@@ -221,7 +222,7 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Seminars
 
@@ -237,7 +238,7 @@ presentations %>%
 ```
 
 
-<!-- \newpage -->
+\newpage
 # Skills
 
 ## Statistical
@@ -291,7 +292,7 @@ skills.titles %>%
 
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Laboratory
 ```{r labskills}
