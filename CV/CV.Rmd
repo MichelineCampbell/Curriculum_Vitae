@@ -6,11 +6,11 @@ position: Research Fellow, Max Planck Institute for Chemistry
 address: Mainz, Germany
 phone: +49 176 36125922
 email: michelineleecampbell@gmail.com
-# website: michelinecampbell.netlify.app
+www: www.mpic.de/person/136604/3669258
 github: MichelineCampbell
 # twitter: michcampbell
 # pronouns: she
-
+orcid: 0000-0002-9626-1189
 # mastodon: michcampbell
 # headcolor: 990000
 headcolor: 125656
@@ -38,7 +38,7 @@ library(lubridate)
 # Professional summary
 
 <!-- I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia.  -->
-My research interests are in Quaternary science, with a focus on using stalagmite proxy data to investigate past environments. My curent focus is on researching past fire events, but I also have experience and interest in the climate-water security nexus. I am currently employed as a research fellow at Max Planck Institute for Chemistry. I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists. 
+My research interests are in Quaternary science, with a focus on using stalagmite proxy data to investigate past environments. My curent focus is on researching past fire events, but I also have experience and interest in the climate-water security nexus. I am currently employed as a research fellow at Max Planck Institute for Chemistry. I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists.
 
 <!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
@@ -76,8 +76,9 @@ detailed_entries(edu3,
                  # what2 = major,
                  where = location,
                  with = paste(department, university, sep = ", "),
-                 #why = why,
+                 why = why,
                  .protect = FALSE)
+
 detailed_entries(edu4,
                  when = as.character(glue("{month(start_date, label = TRUE, abbr = TRUE)} {year(start_date)} -
            {if_else(!is.na(end_date),
@@ -179,12 +180,13 @@ bibliography_entries("data/pubs_in_review.bib") %>%
 ```{r media}
 
 bibliography_entries("data/media.bib") %>%
- dplyr::arrange(desc(issued))
+ dplyr::arrange(desc(issued)) %>% 
+  filter(!id == "campbell_AINSE2")
 
 ```
 
 
-\newpage
+<!-- \newpage -->
 # Presentations (presenting only)
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
@@ -224,7 +226,7 @@ presentations %>%
 
 <!-- \newpage -->
 
-## Seminars
+## Invited talks and seminars
 
 ```{r seminars}
 presentations %>%
@@ -238,7 +240,8 @@ presentations %>%
 ```
 
 
-\newpage
+<!-- \newpage -->
+<!-- ## commented out for UoN short CV -->
 # Skills
 
 ## Statistical
@@ -292,7 +295,7 @@ skills.titles %>%
 
 ```
 
-<!-- \newpage -->
+<!-- <!-- \newpage --> 
 
 ## Laboratory
 ```{r labskills}
@@ -329,18 +332,17 @@ skills.titles %>%
 
 ```
 <!-- \newpage -->
-# Service 
 
-```{r servics} 
+# Service
+
+```{r servics}
 service.titles <- read_csv("data/service.csv")
 service.descriptions <- read_csv("data/servicedesc.csv")
 
 service.titles <- service.titles %>%
   mutate(start = as.Date(start, format = "%d/%m/%Y")) %>%
   mutate(end = as.Date(end, format = "%d/%m/%Y")) %>%
-  arrange(desc(end)) 
-
-
+  arrange(desc(end))
 
 service.descriptions <- service.descriptions %>%
   mutate(start=as.Date(start, format = "%d/%m/%Y")) %>%
@@ -360,15 +362,14 @@ service.titles %>%
       glue("{month(start, label = TRUE, abbr = TRUE)} {year(start)} -
            {if_else(!is.na(end),
            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'Present')}")),
-    
-    
-    
+
+
+
     # when = as.character(
 #       glue("{month(begin, label = TRUE, abbr = TRUE)} {year(begin)} -
 #            {if_else(!is.na(end),
 #            paste(month(end, label = TRUE, abbr = TRUE), year(end)), 'present')}")),
     why = accomplishment)
-
 
 ```
 
