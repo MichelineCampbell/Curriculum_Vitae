@@ -38,7 +38,7 @@ library(lubridate)
 # Professional summary
 
 <!-- I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia.  -->
-My research interests are in Quaternary science, with a focus on using stalagmite proxy data to investigate past environments. My curent focus is on researching past fire events, but I also have experience and interest in the climate-water security nexus. I am currently employed as a research fellow at Max Planck Institute for Chemistry. I am hoping to secure a position which will allow me to continue to develop my analytical skillset, in both the laboratory and in data science, as well as continue to support the next generation of earth and environmental scientists.
+My research is at the intersection of earth and environmental science. I use stalagmite proxy data to investigate past environments, which often requires research into the modern environment and how that affects the proxy system. My curent focus is on using stalagmite geochemistry to research past fire events, but I also work in the climate-water security sapce. I am currently a research fellow at the Max Planck Institute for Chemistry in Mainz, Germany. I aim to secure a position which will allow me to apply my laboratory and data science skillset to answer some of the world's wicked questions and help policy-makers and land managers plan for a changing world. Beyond my own research, I hope to find a position where I can continue to support the development of the next generation of earth and environmental scientists.
 
 <!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
@@ -127,6 +127,12 @@ job.titles %>%
 ```
 
 ## Teaching
+
+Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes is a field-based course which I taught into for my entire time at UWA, and which I co-coordinated in 2018. 
+$~$
+
+$~$
+
 ```{r teaching}
 fund <- read_csv("data/teaching.csv")
 
@@ -138,11 +144,17 @@ detailed_entries(fund,
                  .protect = FALSE) %>%
   arrange(desc(when))
 ```
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes is a field-based course which I taught into for my entire time at UWA, and which I co-coordinated in 2018. 
+
 
 
 <!-- \newpage -->
 # Grants and Awards
+
+Key funders include the Australian Institute of Nuclear Science and Engineering (2 research awards), ANSTO (six synchrotron access proposals), and UNSW (2 * competitive internal funding funding ~3 months salary and research costs).
+$~$
+
+$~$
+
 ```{r funding}
 fund <- read_csv("data/funding.csv")
 
@@ -165,15 +177,15 @@ bibliography_entries("data/my_pubs.bib") %>%
  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
 ```
 
-## Publications in review
+<!-- ## Publications in review -->
 
-```{r inreview}
-bibliography_entries("data/pubs_in_review.bib") %>%
- dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley
+<!-- ```{r inreview} -->
+<!-- bibliography_entries("data/pubs_in_review.bib") %>% -->
+<!--  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley -->
 
-```
+<!-- ``` -->
 
-<!-- \newpage -->
+\newpage
 
 # Media and reports
 
@@ -230,7 +242,7 @@ presentations %>%
 
 ```{r seminars}
 presentations %>%
-  filter(tag %in% c("seminar")) %>%
+  filter(tag %in% c("seminar", "Invited talk", "Panel discussion")) %>%
   arrange(desc(when)) %>%
   detailed_entries(what = title,
                    when = glue("{month(when, label = TRUE)} {year(when)}"),
@@ -295,7 +307,7 @@ skills.titles %>%
 
 ```
 
-<!-- <!-- \newpage --> 
+\newpage 
 
 ## Laboratory
 ```{r labskills}
@@ -350,11 +362,14 @@ service.descriptions <- service.descriptions %>%
   arrange(desc(end))
 
 service.titles %>%
-  arrange(desc(start)) %>%
+  
+  # arrange(desc(start)) %>%
   # Join job descriptions
   left_join(service.descriptions) %>%
+  mutate(end2 = case_when(is.na(end) ~ Sys.Date(),
+                          TRUE ~ end)) %>% 
   # Arrange by descending begin date
-  arrange(desc(start)) %>%
+  arrange(desc(end2)) %>%
   # Format as detailed entries
   detailed_entries(
     what = role,
@@ -408,6 +423,7 @@ brief_entries(pd,
 
 ```
 
+\newpage
 # Professional memberships
 ```{r memberships}
 pm <- read_csv("data/prof_memberships.csv")
@@ -430,18 +446,18 @@ brief_entries(pm,
 ```
 
 
-<!-- # Referees -->
+# Referees
 
-<!-- ```{r refs} -->
-<!-- refs<- read_csv("data/refs.csv") -->
-<!-- refs <- refs %>% -->
-<!--   filter(., include == "Y") %>% -->
-<!--   arrange(desc(year))## condition comes from csv. change manually to include/exclude referees -->
+```{r refs}
+refs<- read_csv("data/refs.csv")
+refs <- refs %>%
+  filter(., include == "Y") %>%
+  arrange(desc(year))## condition comes from csv. change manually to include/exclude referees
 
-<!-- detailed_entries(refs, -->
-<!--   what = name, -->
-<!--   when = role, -->
-<!--   with = where, -->
-<!--   where = contact) -->
+detailed_entries(refs,
+  what = name,
+  when = role,
+  with = where,
+  where = contact)
 
-<!-- ``` -->
+```
