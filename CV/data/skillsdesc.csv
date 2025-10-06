@@ -23,7 +23,7 @@ ID,skill,tag,include,extraID,extra
 13,Software,other,Y,d,QGIS (intermediate)
 13,Software,other,Y,e,Microsoft Suite (advanced)
 13,Software,other,Y,f,LaTEX (novice)
-13,Software,other,Y,g,Rmarkdown (intermediate)
+13,Software,other,Y,g,Rmarkdown (advanced)
 14,Sample preparation,lab,Y,a,Milling carbonates for IRMS
 14,Sample preparation,lab,Y,b,Thick section mounting for LA-ICP-MS and Synchrotron XFM
 14,Sample preparation,lab,N,c,Sample preparation for U-Th dating

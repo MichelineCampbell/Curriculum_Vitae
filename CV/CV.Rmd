@@ -5,7 +5,7 @@ qualifications: BA(Hons), PhD
 position: Research Fellow, Max Planck Institute for Chemistry
 address: Mainz, Germany
 phone: +49 176 36125922
-email: michelineleecampbell@gmail.com
+email: micheline.campbell@mpic.de
 www: www.mpic.de/person/136604/3669258
 github: MichelineCampbell
 # twitter: michcampbell
@@ -22,9 +22,8 @@ output:
     keep_tex: true
   # vitae::awesomecv
     # latexengine: pdflatex
-
-    
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
@@ -38,11 +37,13 @@ library(lubridate)
 # Professional summary
 
 <!-- I have a PhD in Geography, and my thesis focused on speleothem palaeoclimatology using samples from the Snowy Mountains, Australia.  -->
-My research is at the intersection of earth and environmental science. I use stalagmite proxy data to investigate past environments, which often requires research into the modern environment and how that affects the proxy system. My curent focus is on using stalagmite geochemistry to research past fire events, but I also work in the climate-water security sapce. I am currently a research fellow at the Max Planck Institute for Chemistry in Mainz, Germany. I aim to secure a position which will allow me to apply my laboratory and data science skillset to answer some of the world's wicked questions and help policy-makers and land managers plan for a changing world. Beyond my own research, I hope to find a position where I can continue to support the development of the next generation of earth and environmental scientists.
+
+My research is at the intersection of earth and environmental science. I use proxy data from natural archives to investigate past environments, requiring research into the modern environment and how that affects the proxy system. I have published on a wide array of topics, and have experience supervising both Honours and PhD students. I have had funding success in both research grants and access to facilities. I aim to secure a position which will allow me to apply my laboratory and data science skillset to answer some of the world's wicked questions and help policy-makers and land managers plan for a changing world. Beyond my own research, I plan to find a position where I can continue to support and empower the next generation of earth and environmental scientists.
 
 <!-- I am hoping to continue my career in physical geography by securing a position where I can apply skills I have developed in a meaningful way and contribute to the development of the next generation of geographers. -->
 
 # Education
+
 ```{r edu1, include = FALSE}
 
 edu.raw <- read_csv("data/education.csv")
@@ -128,8 +129,7 @@ job.titles %>%
 
 ## Teaching
 
-Teaching contributions include the delivery and creation of content for undergraduate and masters level units, both in the classroom/laboratory and in the field. Catchment and River Processes is a field-based course which I taught into for my entire time at UWA, and which I co-coordinated in 2018. 
-$~$
+Teaching contributions include co-coordinating, lecturing, and tutoring at both the undergraduate and postgraduate levels. This has included the creation of original content, management of fieldwork, content revision, and grading. $~$
 
 $~$
 
@@ -145,13 +145,11 @@ detailed_entries(fund,
   arrange(desc(when))
 ```
 
-
-
 <!-- \newpage -->
+
 # Grants and Awards
 
-Key funders include the Australian Institute of Nuclear Science and Engineering (2 research awards), ANSTO (six synchrotron access proposals), and UNSW (2 * competitive internal funding funding ~3 months salary and research costs).
-$~$
+Total funding to date exceeds AUD\$800 000, with \>AUD\$240 000 of that awarded as the lead investigator. Key funders include the Australian Institute of Nuclear Science and Engineering (two research awards), ANSTO (six synchrotron access proposals), and UNSW (two competitive internal funding schemes, equivalent to \~3 months salary and research costs). $~$
 
 $~$
 
@@ -166,9 +164,18 @@ detailed_entries(fund,
                  .protect = FALSE) %>%
   arrange(desc(when))
 
+stats <- fund %>% 
+  mutate(type = case_when(grepl("Lead", leader) ~ "Leader",
+                          TRUE ~ "Not")) %>% 
+  group_by(type) %>% 
+  summarise(sum = sum(dollars)) 
+
+
+
 ```
 
 <!-- \newpage -->
+
 # Publications
 
 ```{r publications}
@@ -180,7 +187,9 @@ bibliography_entries("data/my_pubs.bib") %>%
 <!-- ## Publications in review -->
 
 <!-- ```{r inreview} -->
+
 <!-- bibliography_entries("data/pubs_in_review.bib") %>% -->
+
 <!--  dplyr::arrange(desc(issued)) # bib from 'my_pubs' folder in Mendeley -->
 
 <!-- ``` -->
@@ -197,9 +206,10 @@ bibliography_entries("data/media.bib") %>%
 
 ```
 
-
 <!-- \newpage -->
+
 # Presentations (presenting only)
+
 ```{r presentations, include =FALSE}
 presentations.raw <- read_csv("data/presentations.csv")
 presentations <-
@@ -210,6 +220,7 @@ presentations <-
 ```
 
 ## Talks
+
 ```{r talks}
 presentations %>%
   filter(tag %in% c("talk")) %>%
@@ -225,6 +236,7 @@ presentations %>%
 <!-- \newpage -->
 
 ## Posters
+
 ```{r posters}
 presentations %>%
   filter(tag %in% c("poster")) %>%
@@ -251,9 +263,10 @@ presentations %>%
                    .protect = FALSE)
 ```
 
-
 <!-- \newpage -->
+
 <!-- ## commented out for UoN short CV -->
+
 # Skills
 
 ## Statistical
@@ -291,6 +304,7 @@ skills.titles %>%
 ```
 
 ## Field
+
 ```{r fieldskills}
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
@@ -307,9 +321,10 @@ skills.titles %>%
 
 ```
 
-\newpage 
+<!-- \newpage  -->
 
 ## Laboratory
+
 ```{r labskills}
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
@@ -327,7 +342,9 @@ skills.titles %>%
 ```
 
 <!-- \newpage -->
+
 ## Other
+
 ```{r otherkills}
 skills.titles <- read_csv("data/skills.csv")
 skills.descriptions <- read_csv("data/skillsdesc.csv")
@@ -343,6 +360,7 @@ skills.titles %>%
     why = extra)
 
 ```
+
 <!-- \newpage -->
 
 # Service
@@ -406,8 +424,8 @@ brief_entries(revs,
 
 ```
 
-
 # Professional development
+
 ```{r pd}
 pd <- read_csv("data/pd.csv")
 
@@ -423,8 +441,10 @@ brief_entries(pd,
 
 ```
 
-\newpage
+<!-- \newpage -->
+
 # Professional memberships
+
 ```{r memberships}
 pm <- read_csv("data/prof_memberships.csv")
 
@@ -445,6 +465,7 @@ brief_entries(pm,
 
 ```
 
+<!-- \newpage -->
 
 # Referees
 

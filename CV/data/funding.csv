@@ -1,18 +1,18 @@
-years,funder,amount,grant,leader
-2018,Australian Institute of Nuclear Science and Engineering,\$1 000,Travel grant,Lead investigator
-2017,Australian and New Zealand Geomorphological Group,\$300,Travel grant,Lead investigator
-2016,University of Western Australia,\$1 850,Travel grant,Lead investigator
-2015--2018,Australian Institute of Nuclear Science and Engineering,\$7 500pa,Postgraduate Ressarch Award Stipend,Lead investigator
-2015--2018,Australian Institute of Nuclear Science and Engineering,\$10 000pa,Postgraduate Research Award Analytical Budget,"Lead investigator, in-kind support"
-2014--2018,Australian Government,\$26 000pa,Research Training Program Stipend,Lead investigator
-2014--2015,Snowy Hydro Ltd.,\$5 000pa,Stipend,
-2014,University of Western Australia,\$3 000,Stipend,
-2021,Australian Institute of Nuclear Science and Engineering,\$10 000,Early Career Researcher Grant,Lead investigator
-2021,University of New South Wales,\$4 000,UNSW Science Covid-19 Strategic Support Grant ,Lead investigator
-2022,ANSTO,\$65 568,48 hours of beamtime on the XFM line at the Australian Synchrotron (experiment 17897),"Investigator, in-kind support"
-2022,ANSTO,\$196 704,144 hours of beamtime on the IRM line at the Australian Synchrotron (experiment 17905),"Investigator, in-kind support"
-2022,ANSTO,\$65 568,48 hours of beamtime on the IRM line at the Australian Synchrotron (experiment 18777),"Investigator, in-kind support"
-2023,ANSTO,\$32 784,24  hours of beamtime on the XFM line at the Australian Synchrotron (experiment 19157),"Lead investigator, in-kind support"
-2021,UNSW ,\$39 766,Research Stopgap Scheme,"Lead investigator, salary costs. Competitive funding internal to UNSW"
-2024,ANSTO,\$131 136,96  hours of beamtime on the XFM line at the Australian Synchrotron (experiment 21875),"Investigator, in-kind support"
-2024,ANSTO,\$98 352,72 hours of beamtime on the XFM line at the Australian Synchrotron (experiment 23245),"Investigator, in-kind support"
+years,funder,amount,grant,leader,,dollars
+2018,Australian Institute of Nuclear Science and Engineering,\$1 000,Travel grant,Lead investigator,,1000
+2017,Australian and New Zealand Geomorphological Group,\$300,Travel grant,Lead investigator,,300
+2016,University of Western Australia,\$1 850,Travel grant,Lead investigator,,1850
+2015--2018,Australian Institute of Nuclear Science and Engineering,\$22 500,Postgraduate Ressarch Award Stipend,Lead investigator,,22500
+2015--2018,Australian Institute of Nuclear Science and Engineering,\$30 000,Postgraduate Research Award Analytical Budget,"Lead investigator, in-kind support",,30000
+2014--2018,Australian Government,\$91 000,Research Training Program Stipend,Lead investigator,,91000
+2014--2015,Snowy Hydro Ltd.,\$10 000,Stipend,Lead,,10000
+2014,University of Western Australia,\$3 000,Stipend,Lead,,3000
+2021,Australian Institute of Nuclear Science and Engineering,\$10 000,Early Career Researcher Grant,Lead investigator,,10000
+2021,University of New South Wales,\$4 000,UNSW Science Covid-19 Strategic Support Grant ,Lead investigator,,4000
+2022,ANSTO,\$65 568,48 hours of beamtime on the XFM line at the Australian Synchrotron (experiment 17897),"Investigator, in-kind support",,65568
+2022,ANSTO,\$196 704,144 hours of beamtime on the IRM line at the Australian Synchrotron (experiment 17905),"Investigator, in-kind support",,196704
+2022,ANSTO,\$65 568,48 hours of beamtime on the IRM line at the Australian Synchrotron (experiment 18777),"Investigator, in-kind support",,65568
+2023,ANSTO,\$32 784,24  hours of beamtime on the XFM line at the Australian Synchrotron (experiment 19157),"Lead investigator, in-kind support",,32784
+2021,UNSW ,\$39 766,Research Stopgap Scheme,"Lead investigator, salary costs. Competitive funding internal to UNSW",,39766
+2024,ANSTO,\$131 136,96  hours of beamtime on the XFM line at the Australian Synchrotron (experiment 21875),"Investigator, in-kind support",,131136
+2024,ANSTO,\$98 352,72 hours of beamtime on the XFM line at the Australian Synchrotron (experiment 23245),"Investigator, in-kind support",,98352
